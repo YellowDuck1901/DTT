@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class MoveToMouse : MonoBehaviour
 {
-    public float speed = 5f;
-    private Vector3 target;
-    bool toogle;
-    // Start is called before the first frame update
+        public float speed = 5f;
+        private Vector3 target;
+        bool toogle;
     void Start()
     {
         target = transform.position;
