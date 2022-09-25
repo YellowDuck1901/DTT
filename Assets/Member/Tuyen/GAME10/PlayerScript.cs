@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public bool isTouched;
-
+    public bool isTouched; // kiem tra player co dung vao vat can khong
+    /*an tat ca cac object button*/
     public void HiddenObj()
     {
-       var childs =  transform.GetComponents<mouseMove>();
-       foreach (var child in childs)
-        {
-            child.isHide = true;
-            Debug.Log($"PlayerScript hidden: {child.isHide}");
-        }
-    }
-
-    public void ShowObj()
-    {
-        var childs = transform.GetComponents<mouseMove>();
+        var childs = transform.GetComponentsInChildren<mouseMove>();
         foreach (var child in childs)
         {
-            child.isHide = true;
+            child.isEnable = false;
+            Debug.Log($"PlayerScript hidden: {child.isEnable}");
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    /*hien thi tat ca cac object button*/
+    public void ShowObj()
     {
-            isTouched = true;
+        var childs = transform.GetComponentsInChildren<mouseMove>();
+        foreach (var child in childs)
+        {
+            child.isEnable = true;
+        }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    /*player dung vao vat can*/
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        isTouched = true;
     }
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +41,6 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
