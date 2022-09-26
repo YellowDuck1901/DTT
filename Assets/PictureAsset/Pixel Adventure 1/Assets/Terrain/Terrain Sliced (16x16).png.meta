@@ -476,7 +476,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -3583,8 +3583,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Terrain Sliced (16x16)_123: 147561251
-      Terrain Sliced (16x16)_104: 1919791771
       Terrain Sliced (16x16)_24: 569105932
       Terrain Sliced (16x16)_0: -321850716
       Terrain Sliced (16x16)_15: -1778480623
@@ -3661,18 +3659,19 @@ TextureImporter:
       Terrain Sliced (16x16)_75: 1874357861
       Terrain Sliced (16x16)_1: -1570904964
       Terrain Sliced (16x16)_87: 58026317
+      Terrain Sliced (16x16)_120: -1707640162
       Terrain Sliced (16x16)_57: -1270627530
       Terrain Sliced (16x16)_74: -1960433679
-      Terrain Sliced (16x16)_88: 45261835
       Terrain Sliced (16x16)_78: 1058186470
+      Terrain Sliced (16x16)_131: -1128912494
       Terrain Sliced (16x16)_79: -835285783
-      Terrain Sliced (16x16)_120: -1707640162
       Terrain Sliced (16x16)_27: 2041569514
       Terrain Sliced (16x16)_133: 901572788
       Terrain Sliced (16x16)_6: 321382669
-      Terrain Sliced (16x16)_140: 561638877
+      Terrain Sliced (16x16)_88: 45261835
       Terrain Sliced (16x16)_39: -1176751148
       Terrain Sliced (16x16)_109: 1028658297
+      Terrain Sliced (16x16)_140: 561638877
       Terrain Sliced (16x16)_44: 1640717467
       Terrain Sliced (16x16)_56: -94626000
       Terrain Sliced (16x16)_86: -1934532548
@@ -3683,7 +3682,6 @@ TextureImporter:
       Terrain Sliced (16x16)_14: 104409442
       Terrain Sliced (16x16)_136: -1818352149
       Terrain Sliced (16x16)_89: -636628387
-      Terrain Sliced (16x16)_131: -1128912494
       Terrain Sliced (16x16)_139: 1828885798
       Terrain Sliced (16x16)_18: 1322079266
       Terrain Sliced (16x16)_42: 1774754633
@@ -3724,7 +3722,7 @@ TextureImporter:
       Terrain Sliced (16x16)_143: -203804697
       Terrain Sliced (16x16)_48: -653634238
       Terrain Sliced (16x16)_66: 150370688
-      Terrain Sliced (16x16)_34: -630245874
+      Terrain Sliced (16x16)_123: 147561251
       Terrain Sliced (16x16)_121: 1656773606
       Terrain Sliced (16x16)_65: -60851644
   spritePackingTag: 
