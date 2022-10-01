@@ -35,7 +35,6 @@ public class G1_Mechanic : MonoBehaviour
 
     }
 
-
     private void LateUpdate()
     {
         if (stringWordPlayer == stringWord && enableInputPlayer)
