@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class ChamelonMove : MonoBehaviour
 {
         private Rigidbody2D rb;
         private bool moveLeft;

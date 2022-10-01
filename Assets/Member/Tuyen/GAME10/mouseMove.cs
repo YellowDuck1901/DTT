@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class mouseMove : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 50f;
     private float x, y;
     public bool isEnable; // trang thai co the nhin thay khong cua obj button
     private bool isActive; // dung de kiem tra object button hien tai co duoc bam vao khong
