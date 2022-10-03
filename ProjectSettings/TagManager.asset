@@ -11,11 +11,12 @@ TagManager:
   - Down
   - Enemy
   - Bullet
+  - land
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
