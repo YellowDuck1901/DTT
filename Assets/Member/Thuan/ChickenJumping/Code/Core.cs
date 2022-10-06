@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -18,7 +19,6 @@ public class Core : MonoBehaviour
     private Animator animator;
     private ActionState _actionState;
     [SerializeField]
-    private List<Collision2D> land;
 
 
     enum ActionState
@@ -32,9 +32,9 @@ public class Core : MonoBehaviour
         rb_Chicken = GetComponent<Rigidbody2D>();
         speed = 5; // speed of chicken
         powerJuping = 5; // power of chicken jump
-        _action = new ChickenAction(Run);
+        _action = Run;
         animator = GetComponent<Animator>();
-        land = new List<Collision2D>();
+        isChickenOnLand = true;
     }
 
     // Update is called once per frame
@@ -55,6 +55,7 @@ public class Core : MonoBehaviour
         }
     }
 
+    
 
     //Action
 
@@ -64,16 +65,16 @@ public class Core : MonoBehaviour
     }
     bool Jump()
     {
-        Debug.Log($"Pause Jump, land>> {land.Count}");
         if (_actionState != ActionState.Jumping)
         {
+            isChickenOnLand = false;
             animator.SetBool("Jump", true);
             rb_Chicken.AddForce(Vector2.up * powerJuping, ForceMode2D.Impulse);
         }
         else
         {
-            var check = land.Any(x => x.gameObject.tag == "land");
-            if (check)
+            rb_Chicken.position += Vector2.right * speed * Time.deltaTime;
+            if (isChickenOnLand)
             {
                 animator.SetBool("Jump", false);
                 return true;
@@ -82,21 +83,20 @@ public class Core : MonoBehaviour
         _actionState = ActionState.Jumping;
         return false;
     }
+
+    private bool isChickenOnLand;
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("land"))
+        {
+            isChickenOnLand = true;
+        }
         Debug.Log($"Add {collision.gameObject.tag}");
-        land.Add(collision);
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        Debug.Log($"Remove {collision.gameObject.tag}");
-        land.Remove(collision);
-        Debug.Log($"Pause Jump, land>> {land.Count}");
     }
 
     bool Run()
     {
-        //rb_Chicken.position += Vector2.right * speed * Time.deltaTime;
+        rb_Chicken.position += Vector2.right * speed * Time.deltaTime;
         _actionState = ActionState.Running;
         return false;
     }
