@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    public float speed = 0.85f;
+    public float speed = 1f;
     bool toggle;
     private Vector3 target;
     private Animator anim;
@@ -51,11 +51,18 @@ public class EnemyMove : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            anim.SetBool("attack", true);
-            Destroy(collision.gameObject);
+            StartCoroutine(destroyKing());
         }
     }
  
+    IEnumerator destroyKing()
+    {
+        toggle = false;
+        anim.SetBool("attack", true);
+        yield return new WaitForSeconds(1);
+        anim.SetBool("attack", false);
+        yield return new WaitForSeconds(1);
+    }
 
 
 

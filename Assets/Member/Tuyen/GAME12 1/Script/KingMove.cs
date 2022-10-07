@@ -7,7 +7,7 @@ public class KingMove : MonoBehaviour
     public float speed = 0.75f;
     double randomTime;
     public double time;
-    public float stop = 3f;
+    public float stop;
     private Animator anim;
     private CamScript camScript;
     void Start()
@@ -16,6 +16,7 @@ public class KingMove : MonoBehaviour
         randomTime = Random.Range(2f, 6f);
         time = 0;
         camScript = Camera.main.GetComponent<CamScript>();
+        stop = randomStopTime();
     }
 
     // Update is called once per frame
@@ -27,21 +28,23 @@ public class KingMove : MonoBehaviour
     {
         var remainTime = Time.realtimeSinceStartupAsDouble - time; // ~ 0
         //time += Time.realtimeSinceStartupAsDouble;
-        if( (remainTime) >= randomTime) // 4
+        if ((remainTime) >= randomTime) // 4
         {
             anim.SetBool("running", false);
-            gameObject.transform.localScale = new Vector3(-1,1, 1); //flip player
-                if(camScript.isMoving)
-                {
-                    Debug.Log("GAME OVER");
-                }
-
-            if (remainTime >= (randomTime + stop) ) //code l
+            gameObject.transform.localScale = new Vector3(-1, 1, 1); //flip player
+            if (camScript.isMoving)
             {
+                Debug.Log("GAME OVER");
+            }
+
+            if (remainTime >= (randomTime + stop)) //code l
+            {
+                stop = randomStopTime();
                 randomTime = Random.Range(2f, 6f);
                 time = Time.realtimeSinceStartupAsDouble;
             }
-        } else //first time
+        }
+        else //first time
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             anim.SetBool("running", true);
@@ -49,5 +52,26 @@ public class KingMove : MonoBehaviour
 
 
         }
+    }
+
+    private float randomStopTime()
+    {
+        return Random.Range(2f, 5f);
+    }
+
+  
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        StartCoroutine(waitingDestroy());
+        
+    }
+
+    IEnumerator waitingDestroy()
+    {
+        anim.SetBool("dealth", true);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
+
     }
 }

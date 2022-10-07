@@ -11,6 +11,8 @@ TagManager:
   - Down
   - Enemy
   - Bullet
+  - trap
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -50,4 +52,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Map
+    uniqueID: 1674000397
     locked: 0

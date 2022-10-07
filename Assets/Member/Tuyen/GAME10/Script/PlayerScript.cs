@@ -15,13 +15,28 @@ public class PlayerScript : MonoBehaviour
             Debug.Log($"PlayerScript hidden: {child.isEnable}");
         }
     }
-    
+
     /*hien thi tat ca cac object button*/
     public void ShowObj()
     {
         var childs = transform.GetComponentsInChildren<mouseMove>();
         foreach (var child in childs)
         {
+            switch (child.tag)
+            {
+                case "Up":
+                    child.transform.position = (transform.position + new Vector3(0f, 5f));
+                    break;
+                case "Down":
+                    child.transform.position = (transform.position + new Vector3(0f, -5f));
+                    break;
+                case "Left":
+                    child.transform.position = (transform.position + new Vector3(-5f, 0));
+                    break;
+                case "Right":
+                    child.transform.position = (transform.position + new Vector3(5f, 0));
+                    break;
+            }
             child.isEnable = true;
         }
     }
