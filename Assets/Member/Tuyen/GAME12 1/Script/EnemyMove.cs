@@ -9,6 +9,9 @@ public class EnemyMove : MonoBehaviour
     private Vector3 target;
     private Animator anim;
     private CamScript camScript;
+
+    [SerializeField]
+    Animator animKing;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,18 +54,17 @@ public class EnemyMove : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            StartCoroutine(destroyKing());
+            anim.SetBool("attack", true);
+            toggle = false;
         }
     }
- 
-    IEnumerator destroyKing()
+
+    void kingDead()
     {
-        toggle = false;
-        anim.SetBool("attack", true);
-        yield return new WaitForSeconds(1);
-        anim.SetBool("attack", false);
-        yield return new WaitForSeconds(1);
+        animKing.SetBool("dealth", true);
     }
+ 
+
 
 
 

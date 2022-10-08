@@ -59,19 +59,9 @@ public class KingMove : MonoBehaviour
         return Random.Range(2f, 5f);
     }
 
-  
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    void destroyKing()
     {
-        StartCoroutine(waitingDestroy());
-        
-    }
-
-    IEnumerator waitingDestroy()
-    {
-        anim.SetBool("dealth", true);
-        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
-
     }
+
 }

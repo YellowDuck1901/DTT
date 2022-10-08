@@ -32,7 +32,6 @@ public class mouseMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         isEnable = true; //object button duoc cho phep nhin thay
         isActive = false; //object button hien tai khong duoc bam vao
         /*kiem tra object button hien tai la nut nao va gan gia tri huong cho object button do*/

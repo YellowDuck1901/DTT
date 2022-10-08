@@ -48,20 +48,23 @@ public class FatBird : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             rb.velocity = Vector2.zero;
+            anim.SetBool("death", true);
             anim.SetBool("fell", true);
             falling = false;
-            anim.SetBool("death", true);
             Debug.Log("GAME OVER");
         }
         if(collision.gameObject.tag == "Goal")
         {
             falling = false;
+            rb.velocity = Vector2.zero;
+            anim.SetBool("fell", true);
             Debug.Log("Win");
         }
         if(collision.gameObject.tag == "trap")
         {
             falling = false;
             anim.SetBool("death", true);
+            rb.velocity = Vector2.zero;
             Debug.Log("Game Over");
         }
     }
