@@ -132,12 +132,12 @@ TextureImporter:
       name: Hit Wall (52x34)_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 11
         y: 0
-        width: 52
+        width: 36
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: Hit Wall (52x34)_1
       rect:
         serializedVersion: 2
-        x: 52
+        x: 63
         y: 0
-        width: 52
+        width: 36
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,12 +174,12 @@ TextureImporter:
       name: Hit Wall (52x34)_2
       rect:
         serializedVersion: 2
-        x: 104
+        x: 113
         y: 0
-        width: 52
-        height: 34
+        width: 39
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,12 +195,12 @@ TextureImporter:
       name: Hit Wall (52x34)_3
       rect:
         serializedVersion: 2
-        x: 156
+        x: 161
         y: 0
-        width: 52
-        height: 34
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

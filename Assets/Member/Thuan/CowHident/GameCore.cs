@@ -62,10 +62,6 @@ public class GameCore : MonoBehaviour
         //get height gameObject
         var objectHeight = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
 
-        Debug.Log("Height Obj: " + objectHeight);
-        Debug.Log("Width Obj: " + objectWidth);
-
-
         //get min x of screen
         var minX = -width / 2 + objectWidth / 2;
         //get max x of screen
@@ -75,14 +71,9 @@ public class GameCore : MonoBehaviour
         //get max y of screen
         var maxY = height / 2 - objectHeight / 2;
 
-        Debug.Log("minX: " + minX);
-        Debug.Log("maxX: " + maxX);
-        Debug.Log("minY: " + minY);
-        Debug.Log("maxY: " + maxY);
-
+     
         var randPx = Random.Range(minX, maxX);
         var randPy = Random.Range(minY, maxY);
-        Debug.Log($"OBJ random position: {randPx}, {randPy}");
 
         //random position in screen
         transform.position = new Vector3(randPx, randPy, transform.position.z);
