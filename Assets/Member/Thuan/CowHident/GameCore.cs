@@ -11,6 +11,8 @@ public class GameCore : MonoBehaviour
     [SerializeField]
     private AudioClip Cowsound;
 
+    private Animator _animator;
+
     private OnCowHidentEvent eventStart;
     private OnCowHidentEvent eventCheckClick;
     private OnCowHidentEvent eventEnd;
@@ -29,6 +31,7 @@ public class GameCore : MonoBehaviour
 
         //event end of game
         eventEnd = FadeIn;
+        eventEnd += AnimationEventAtEnd;
         //event start of game
         eventStart();
     }
@@ -44,29 +47,45 @@ public class GameCore : MonoBehaviour
     /// <summary>
     /// Game object random position in screen with offset of GameObject
     /// </summary>
-    public void RandomPosition()
+    private void RandomPosition()
     {
-        //get width of screen
-        float width = Camera.main.orthographicSize * Screen.width / Screen.height;
         //get height of screen
-        float height = Camera.main.orthographicSize;
+        float height = Camera.main.orthographicSize * 2f;
+        //get width of screen
+        float width = height * Camera.main.aspect;
+
+        Debug.Log("Height Screen: " + height);
+        Debug.Log("Width Screen: " + width);
 
         //get width gameObject
-        var _objectWidth = gameObject.GetComponent<SpriteRenderer>().bounds.size.x;
+        var objectWidth = gameObject.GetComponent<SpriteRenderer>().bounds.size.x;
         //get height gameObject
-        var _objectHeight = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
+        var objectHeight = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
+
+        Debug.Log("Height Obj: " + objectHeight);
+        Debug.Log("Width Obj: " + objectWidth);
+
 
         //get min x of screen
-        var minX = -width / 2 + _objectWidth / 2;
+        var minX = -width / 2 + objectWidth / 2;
         //get max x of screen
-        var maxX = width / 2 - _objectWidth / 2;
+        var maxX = width / 2 - objectWidth / 2;
         //get min y of screen
-        var minY = -height / 2 + _objectHeight / 2;
+        var minY = -height / 2 + objectHeight / 2;
         //get max y of screen
-        var maxY = height / 2 - _objectHeight / 2;
-        Camera cam = Camera.main;
+        var maxY = height / 2 - objectHeight / 2;
+
+        Debug.Log("minX: " + minX);
+        Debug.Log("maxX: " + maxX);
+        Debug.Log("minY: " + minY);
+        Debug.Log("maxY: " + maxY);
+
+        var randPx = Random.Range(minX, maxX);
+        var randPy = Random.Range(minY, maxY);
+        Debug.Log($"OBJ random position: {randPx}, {randPy}");
+
         //random position in screen
-        transform.position = new Vector3(Random.Range(minX, maxX) - _objectWidth, Random.Range(minY, maxY) - _objectHeight, transform.position.z);
+        transform.position = new Vector3(randPx, randPy, transform.position.z);
         //game object hide
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0f);
     }
@@ -78,6 +97,32 @@ public class GameCore : MonoBehaviour
     {
         gameObject.SetActive(true);
         StartCoroutine(FadeIn(TimeFadeIn));
+    }
+
+    private void AnimationEventAtEnd()
+    {
+        _animator = gameObject.GetComponent<Animator>();
+        _animator.Play("Run");
+        StartCoroutine(SlideOut());
+    }
+
+
+    private IEnumerator SlideOut()
+    {
+        //get height of screen
+        float height = Camera.main.orthographicSize * 2f;
+        //get width of screen
+        float width = height * Camera.main.aspect;
+        var objectWidth = gameObject.GetComponent<SpriteRenderer>().bounds.size.x;
+
+        //get min x of screen
+        var minX = -width / 2;
+        while (minX - objectWidth / 2 < transform.position.x )
+        {
+            transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z);
+            yield return new WaitForSeconds(0.01f);
+        }
+        Debug.Log("Slide out");
     }
 
     /// <summary>
@@ -130,7 +175,6 @@ public class GameCore : MonoBehaviour
     private float DistanceToSoundValue(Vector2 position, Vector2 cowP)
     {
         float volume = 1 + Mathf.Sqrt(Mathf.Pow((position.y - cowP.y), 2) + Mathf.Pow((position.x - cowP.x), 2));
-        Debug.Log("volume distance: " + volume);
 
         return (1 / Mathf.Abs(volume));
     }
@@ -144,7 +188,6 @@ public class GameCore : MonoBehaviour
     /// <param name="time"></param>
     private void playSoundOnDistance(float volume, float time)
     {
-        Debug.Log("volume: " + volume);
         AudioSource.volume = volume;
         AudioSource.clip = Cowsound;
         AudioSource.Play();
@@ -160,15 +203,13 @@ public class GameCore : MonoBehaviour
     {
         while (true)
         {
-                Debug.Log($"Audio time {AudioSource.time}");
-            if (AudioSource.time >= time)
+            if (AudioSource.time >= time || !AudioSource.isPlaying)
             {
-                Debug.Log("Stop");
                 AudioSource.Stop();
-                yield break;
+                break;
             }
 
-            yield return new WaitForSeconds(time);
+            yield return null;
         }
     }
 
