@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class Enemy2 : MonoBehaviour
 
     private bool isEverlasting = false;
 
+    [SerializeField]
+    private Animator animator;
 
     private Rigidbody2D rig;
     private Vector3 dir;
@@ -57,7 +60,8 @@ public class Enemy2 : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                rig.bodyType = RigidbodyType2D.Static;
+                animator.SetBool("IsHit", true);
             }
         }
     }
@@ -65,15 +69,37 @@ public class Enemy2 : MonoBehaviour
     IEnumerator Everlating()
     {
         rig.bodyType = RigidbodyType2D.Static;
-        //////////animation here
+        animator.SetBool("IsEverLast", true);
         yield return new WaitForSeconds(everlastingSecond);
+        animator.SetBool("IsEverLast", false);
         rig.bodyType = RigidbodyType2D.Dynamic;
-
-
         isEverlasting = false;
         isAlreadyEverlasting = true;
     }
 
+    void kill()
+    {
+        Destroy(this.gameObject);
+    }
+    //AnimationClip findAnimationClip(string clipName, Animator anim) {
+    //    AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
+    //    foreach (AnimationClip clip in clips)
+    //    {
+    //       if(clip.name == clipName)
+    //        {
+    //            return clip;
+    //        }
+    //    }
 
+    //    return null;
+    //}
+
+    //private IEnumerator WaitForAnimation(Animation animation)
+    //{
+    //    do
+    //    {
+    //        yield return null;
+    //    } while (animation.isPlaying);
+    //}
 
 }
