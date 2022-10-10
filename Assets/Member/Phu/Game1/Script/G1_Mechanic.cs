@@ -15,6 +15,10 @@ public class G1_Mechanic : MonoBehaviour
     bool enableInputPlayer = false;
 
     [SerializeField]
+    int[] wordInLevel = new int[] { 1,1,2,2,4};
+    int currentLevel = 0;
+
+    [SerializeField]
     Dialogue dialogueEnemy;
 
     [SerializeField]
@@ -27,9 +31,14 @@ public class G1_Mechanic : MonoBehaviour
     AudioClip left;
     [SerializeField]
     AudioClip right;
+
+    [SerializeField]
+    Animator animatorCharacter;
+    [SerializeField]
+    Animator animatorEnemy;
     void Start()
     {
-        nextLevel(1);
+        nextLevel();
 
     }
 
@@ -57,14 +66,16 @@ public class G1_Mechanic : MonoBehaviour
         if (stringWordPlayer == stringWord && enableInputPlayer)
         {
             stringWordPlayer = "";
-            ClearConsole();
             enableInputPlayer = false;
             statusGame.SetText("CORRECT");
-            nextLevel(1);
+            animatorEnemy.SetTrigger("Hit");
+
+            nextLevel();
         }
         else if(!stringWord.Contains(stringWordPlayer))
         {
             statusGame.SetText("FAILLL");
+            animatorEnemy.SetTrigger("Hit");
         }
 
     }
@@ -97,12 +108,23 @@ public class G1_Mechanic : MonoBehaviour
 
     }
 
-    void nextLevel(int increaseNumber)
+    void nextLevel()
     {
-        numberWord += increaseNumber;
-        createStringWord(numberWord);
-        StartCoroutine(readStringWord(2f));
-        
+   
+        if(currentLevel < wordInLevel.Length-1)
+        {
+            numberWord = wordInLevel[currentLevel];
+            Debug.Log("numberword"+numberWord);
+            Debug.Log("current lvelve"+currentLevel);
+
+            createStringWord(numberWord);
+            StartCoroutine(readStringWord(2f));
+            currentLevel++;
+        }
+        else
+        {
+            statusGame.SetText("Win");
+        }
     }
 
     public static void ClearConsole()
