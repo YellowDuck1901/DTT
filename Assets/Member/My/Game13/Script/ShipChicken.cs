@@ -6,12 +6,19 @@ using UnityEngine;
 public class ShipChicken : MonoBehaviour
 {
     //public GameObject explosion;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("da cham");
+        //Debug.Log("da cham");
         if(collision.tag == "boom")
         {
-            Debug.Log("chet");
+            anim.SetBool("die", true);
+            //Debug.Log("chet");
         }
         else if(collision.tag == "fruit")
         {

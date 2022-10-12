@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OMDBee : MonoBehaviour
+{
+    public GameObject bee;
+    private void OnMouseDown()
+    {
+        Debug.Log("giet duoc con ong");
+        Destroy(bee);
+    }
+}
