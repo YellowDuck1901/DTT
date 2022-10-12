@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class mouseMove : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 50f;
     private float x, y;
     public bool isEnable; // trang thai co the nhin thay khong cua obj button
     private bool isActive; // dung de kiem tra object button hien tai co duoc bam vao khong
@@ -12,13 +12,13 @@ public class mouseMove : MonoBehaviour
     {
         if (isEnable) //neu object buton hien tai co the duoc nhin thay
         {
-        Debug.Log(string.Concat(new string('*', 30), "Start mouseDown"));
-        isActive = true; // gan cho object button biet la da duoc bam vao
-        transform.parent.GetComponentInParent<PlayerScript>().isTouched = false; // Player khong cham vao gi
-        transform.parent.GetComponentInParent<PlayerScript>().HiddenObj(); //Ham an cac button
-        Debug.Log($"isEnable = {isEnable} ");
-        Debug.Log($"transform.tag = {transform.tag} ");
-        Debug.Log(string.Concat(new string('*', 30), "End mouseDown"));
+            Debug.Log(string.Concat(new string('*', 30), "Start mouseDown"));
+            isActive = true; // gan cho object button biet la da duoc bam vao
+            transform.parent.GetComponentInParent<PlayerScript>().isTouched = false; // Player khong cham vao gi
+            transform.parent.GetComponentInParent<PlayerScript>().HiddenObj(); //Ham an cac button
+            Debug.Log($"isEnable = {isEnable} ");
+            Debug.Log($"transform.tag = {transform.tag} ");
+            Debug.Log(string.Concat(new string('*', 30), "End mouseDown"));
         }
 
 
@@ -37,23 +37,23 @@ public class mouseMove : MonoBehaviour
         /*kiem tra object button hien tai la nut nao va gan gia tri huong cho object button do*/
         if (transform.tag == "Left")
         {
-            x = -1;
+            x = -10;
             y = 0;
         }
         else if (transform.tag == "Right")
         {
-            x = 1;
+            x = 10;
             y = 0;
         }
         else if (transform.tag == "Up")
         {
-            y = 1;
+            y = 10;
             x = 0;
         }
         else if (transform.tag == "Down")
         {
             x = 0;
-            y = -1;
+            y = -10;
         }
         else
         {
@@ -61,12 +61,17 @@ public class mouseMove : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void Update()
     {
+
+    }
+    private void FixedUpdate()
+    {
         if (!transform.parent.GetComponentInParent<PlayerScript>().isTouched && isActive && isEnable == false) //Player phai trong trang thai khong dung, object button hien tai da duoc bam va object button da duoc an
         {
-            transform.parent.position += new Vector3(x, y, 0) * speed * Time.deltaTime;
+            transform.parent.GetComponentInParent<Rigidbody2D>().velocity = new Vector3(x, y, 0) * speed * Time.deltaTime;
         }
 
         if (transform.parent.GetComponentInParent<PlayerScript>().isTouched) //neu player bi dung vao vat can thi hien thi cac object button va object button hien tai dung hoat dong
@@ -75,6 +80,6 @@ public class mouseMove : MonoBehaviour
             isActive = false;
         }
         gameObject.GetComponent<Renderer>().enabled = isEnable; //set an hien object button
+        //anim.SetBool("running", false);
     }
-
 }
