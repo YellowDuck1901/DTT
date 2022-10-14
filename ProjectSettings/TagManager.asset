@@ -11,6 +11,12 @@ TagManager:
   - Down
   - Enemy
   - Bullet
+  - player
+  - fruit
+  - boom
+  - Bee
+  - Boundary
+  - Top
   layers:
   - Default
   - TransparentFX
@@ -48,6 +54,18 @@ TagManager:
   - name: 1
     uniqueID: 2771277635
     locked: 0
+  - name: titlemap
+    uniqueID: 998413557
+    locked: 0
+  - name: player
+    uniqueID: 3568565635
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: bee
+    uniqueID: 278408609
+    locked: 0
+  - name: snail
+    uniqueID: 2914900567
     locked: 0

@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     private bool moving;
     private string dir;
     private bool isRunning = false;
-    private float x = 0.6f;
+    private float x = 1.0f;
     // Start is called before the first frame update
     void Start()
     {

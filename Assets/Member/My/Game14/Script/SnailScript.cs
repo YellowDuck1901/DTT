@@ -10,6 +10,8 @@ public class SnailScript : MonoBehaviour
     private Vector3 dir = Vector3.left;
     public SpriteRenderer snail;
     private Animator anim;
+    [SerializeField]
+    private AudioSource addsound;
 
 
     // Start is called before the first frame update
@@ -41,6 +43,7 @@ public class SnailScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bee")
         {
+            addsound.Play();
             anim.SetTrigger("Die");
         }
     }

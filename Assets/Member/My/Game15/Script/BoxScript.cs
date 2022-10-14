@@ -12,6 +12,9 @@ public class BoxScript : MonoBehaviour
     private float duration, speed;
 
     private float time, rate;
+
+    [SerializeField]
+    private AudioSource addSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,7 @@ public class BoxScript : MonoBehaviour
         {
             time = rate * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, b, speed * Time.deltaTime); ;
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position + "test");
             //rate = 1 / duration;
             //time = rate * Time.deltaTime;
             //transform.position = Vector3.Lerp(a, b, time);
@@ -40,7 +43,7 @@ public class BoxScript : MonoBehaviour
         {
             time = rate * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, b, speed*Time.deltaTime); ;
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position);
             yield return 0;
         }
     }  
@@ -59,5 +62,7 @@ public class BoxScript : MonoBehaviour
     {
         active = false;
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        addSound.Play();
+        Debug.Log(transform.position + "test");
     }
 }
