@@ -10,6 +10,8 @@ public class KingMove : MonoBehaviour
     public float stop;
     private Animator anim;
     private CamScript camScript;
+    [SerializeField] private AudioSource kingDeathSound;
+    [SerializeField] private AudioSource kingWinningSound;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -17,6 +19,7 @@ public class KingMove : MonoBehaviour
         time = 0;
         camScript = Camera.main.GetComponent<CamScript>();
         stop = randomStopTime();
+
     }
 
     // Update is called once per frame
@@ -61,7 +64,19 @@ public class KingMove : MonoBehaviour
 
     void destroyKing()
     {
-        Destroy(gameObject);
+        kingDeathSound.Play();
+        Destroy(gameObject,0.5f);
+        Debug.Log("SOUND DEATH PLAY !!");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Goal")
+        {
+            kingWinningSound.Play();    
+            Debug.Log("Win");
+            Destroy(gameObject, 0.5f);
+        }
     }
 
 }

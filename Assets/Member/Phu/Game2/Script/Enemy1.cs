@@ -16,6 +16,9 @@ public class Enemy1 : MonoBehaviour
 
     private Rigidbody2D rig;
     private Vector3 dir;
+
+    [SerializeField]
+    private Animator animator;
     void Start()
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
@@ -45,11 +48,22 @@ public class Enemy1 : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             heart--;
-            if (heart == 0)
-            {
-                Destroy(gameObject);
-            }
+            rig.bodyType = RigidbodyType2D.Static;
+            animator.SetTrigger("Hit");
         }
     }
+
+    private void kill()
+    {
+
+        if (heart == 0)
+        {
+            Destroy(this.gameObject);
+        }else rig.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    
+
+
 
 }

@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerScript : MonoBehaviour
 {
     public bool isTouched; // kiem tra player co dung vao vat can khong
     /*an tat ca cac object button*/
     private Animator anim;
+    [SerializeField] private AudioSource touchAudio;
+    private float yPosition;
+    Renderer m_Renderer;
     public void HiddenObj()
     {
         anim.SetBool("running", true);
@@ -29,16 +34,16 @@ public class PlayerScript : MonoBehaviour
             switch (child.tag)
             {
                 case "Up":
-                    child.transform.position = (transform.position + new Vector3(0f, 5f));
+                    child.transform.position = (transform.position + new Vector3(0f, 1f));
                     break;
                 case "Down":
-                    child.transform.position = (transform.position + new Vector3(0f, -5f));
+                    child.transform.position = (transform.position + new Vector3(0f, -2f));
                     break;
                 case "Left":
-                    child.transform.position = (transform.position + new Vector3(-5f, 0));
+                    child.transform.position = (transform.position + new Vector3(-yPosition, -0.5f));
                     break;
                 case "Right":
-                    child.transform.position = (transform.position + new Vector3(5f, 0));
+                    child.transform.position = (transform.position + new Vector3(yPosition, -0.5f));
                     break;
             }
             child.isEnable = true;
@@ -48,7 +53,12 @@ public class PlayerScript : MonoBehaviour
     /*player dung vao vat can*/
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isTouched = true;
+        if (collision.gameObject.tag != "Goal")
+        {
+
+            isTouched = true;
+            touchAudio.Play();
+        }
     }
 
 
@@ -56,6 +66,9 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        yPosition = 1.5f;
+        m_Renderer = GetComponent<Renderer>();
+
     }
 
     // Update is called once per frame
@@ -63,4 +76,14 @@ public class PlayerScript : MonoBehaviour
     {
 
     }
+
+    private void FixedUpdate()
+    {
+        if (m_Renderer.isVisible)
+        {
+            Debug.Log("Object is visible");
+        }
+        else Debug.Log("GAME OVER");
+    }
+
 }

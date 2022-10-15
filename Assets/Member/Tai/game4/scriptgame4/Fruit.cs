@@ -11,23 +11,23 @@ public class Fruit : MonoBehaviour
     [SerializeField] float minTras;
     [SerializeField] float maxTras;
 
-    
+
     void Start()
     {
         StartCoroutine(FruitSpawn());
     }
 
-    IEnumerator FruitSpawn()  
+    IEnumerator FruitSpawn()
     {
         while (true)
         {
             var wanted = Random.Range(minTras, maxTras);
             var position = new Vector3(wanted, transform.position.y);
-          
+
             GameObject gameObject = Instantiate(fruitPrefab[Random.Range(0, fruitPrefab.Length)], position, Quaternion.identity); //radom xong khoi tao
             yield return new WaitForSeconds(secondSpawn); // đợi tầm x giây ròi ms tiếp tục lại while
             Destroy(gameObject, 5f); // hủy obj
-           
+
         }
     }
 

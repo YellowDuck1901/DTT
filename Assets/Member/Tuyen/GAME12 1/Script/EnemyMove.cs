@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 1.25f;
     bool toggle;
     private Vector3 target;
     private Animator anim;
     private CamScript camScript;
+    [SerializeField] private AudioSource playerAttackSound;
 
     [SerializeField]
     Animator animKing;
@@ -55,6 +56,7 @@ public class EnemyMove : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             anim.SetBool("attack", true);
+            playerAttackSound.Play();
             toggle = false;
         }
     }

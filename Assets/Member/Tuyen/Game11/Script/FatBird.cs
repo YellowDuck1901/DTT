@@ -10,6 +10,9 @@ public class FatBird : MonoBehaviour
     Vector2[] directionList;
     Animator anim;
     private bool falling;
+    [SerializeField] private AudioSource winSound;
+    [SerializeField] private AudioSource deathSound;
+    Renderer m_Renderer;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,7 @@ public class FatBird : MonoBehaviour
         anim = GetComponent<Animator>();
         falling = true;
         rb.freezeRotation = true;
+        m_Renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -41,12 +45,19 @@ public class FatBird : MonoBehaviour
 
             }
         }
+
+        if (m_Renderer.isVisible)
+        {
+            Debug.Log("Object is visible");
+        }
+        else Debug.Log("GAME OVER OUT CAMERA");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
+            deathSound.Play();
             rb.velocity = Vector2.zero;
             anim.SetBool("death", true);
             anim.SetBool("fell", true);
@@ -55,6 +66,7 @@ public class FatBird : MonoBehaviour
         }
         if(collision.gameObject.tag == "Goal")
         {
+            winSound.Play();
             falling = false;
             rb.velocity = Vector2.zero;
             anim.SetBool("fell", true);
@@ -62,6 +74,7 @@ public class FatBird : MonoBehaviour
         }
         if(collision.gameObject.tag == "trap")
         {
+            deathSound.Play();
             falling = false;
             anim.SetBool("death", true);
             rb.velocity = Vector2.zero;

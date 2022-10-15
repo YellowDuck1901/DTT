@@ -13,6 +13,7 @@ TagManager:
   - Bullet
   - trap
   - Ground
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,9 @@ TagManager:
   m_SortingLayers:
   - name: background
     uniqueID: 2771277635
+    locked: 0
+  - name: Object
+    uniqueID: 1747290599
     locked: 0
   - name: Default
     uniqueID: 0
