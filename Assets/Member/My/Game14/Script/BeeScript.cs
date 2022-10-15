@@ -14,6 +14,9 @@ public class BeeScript : MonoBehaviour
     private Vector3 dir;
     private Animator anim;
 
+    [SerializeField]
+    private AudioSource addSound;
+
     void Start()
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
@@ -25,7 +28,7 @@ public class BeeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        addSound.Play();
     }
 
     private void FixedUpdate()

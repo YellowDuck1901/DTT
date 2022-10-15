@@ -8,7 +8,10 @@ public class ShipChicken : MonoBehaviour
     //public GameObject explosion;
     private Animator anim;
     [SerializeField]
-    private AudioSource addSound;
+    private AudioSource addSoundEatBoom;
+
+    [SerializeField]
+    private AudioSource addSoundEatFruit;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -19,11 +22,12 @@ public class ShipChicken : MonoBehaviour
         if(collision.tag == "boom")
         {
             anim.SetBool("die", true);
-            addSound.Play();
+            addSoundEatBoom.Play();
             //Debug.Log("chet");
         }
         else if(collision.tag == "fruit")
         {
+            addSoundEatFruit.Play();
             Debug.Log("an duoc trai cay");
         }
         //GameObject e = Instantiate(explosion) as GameObject;

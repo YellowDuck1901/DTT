@@ -17,6 +17,8 @@ TagManager:
   - Bee
   - Boundary
   - Top
+  - Box
+  - Ground
   layers:
   - Default
   - TransparentFX

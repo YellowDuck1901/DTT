@@ -65,4 +65,14 @@ public class BoxScript : MonoBehaviour
         addSound.Play();
         Debug.Log(transform.position + "test");
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            //anim.SetBool("die", true);
+            //addSoundEatBoom.Play();
+            Debug.Log("thua");
+        }
+    }
 }
