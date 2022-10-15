@@ -53,7 +53,7 @@ public class PlayerBull : MonoBehaviour
     IEnumerator Wait()
     {
         //animation hit play one time
-        _animator.Play("Hit", -1, 0.1f);
+        _animator.Play("Hit", -1, 0f);
         yield return new WaitForSeconds(.1f);
         _animator.Play("Run");
     }
