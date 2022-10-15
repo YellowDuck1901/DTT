@@ -1,3 +1,4 @@
+using Assets.Member.Thuan.Public;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
@@ -44,6 +45,7 @@ public class PlayerBull : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            SoundManager.instance.Play("Strike");
             _animator = gameObject.GetComponent<Animator>();
             StartCoroutine(Wait());
             //animation play one time

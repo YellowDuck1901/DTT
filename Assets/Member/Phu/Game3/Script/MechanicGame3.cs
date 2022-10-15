@@ -5,20 +5,23 @@ using UnityEngine;
 public class MechanicGame3 : MonoBehaviour
 {
     // Start is called before the first frame update
+   
     [SerializeField]
-    float force;
-
-    [SerializeField]
-    int numberRoundToPush;
+    static int numberRoundToPush = 3;
 
     float rotationLevel = 0;
     float zLastFrame = 0 , zInFrame;
-    int totalRound;
+    static int totalRound;
     bool isIncrease;
-    Rigidbody2D rigidbody2D;
+
+    //Rigidbody2D rigidbody2D;
+
+    [SerializeField]
+    static float force = 400;
+
     void Start()
     {
-         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+         //rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -41,14 +44,20 @@ public class MechanicGame3 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(totalRound >= numberRoundToPush)
-        {
-            Debug.Log("push");
-           totalRound -= numberRoundToPush;
-            pushUp();
-        }
+       
     }
 
+    public static bool pushCharacter(Rigidbody2D rig)
+    {
+        if (totalRound >= numberRoundToPush)
+        {
+            totalRound -= numberRoundToPush;
+            rig.velocity = new Vector2(0f, 0f);
+            rig.AddForce(Vector2.up * force * Time.fixedDeltaTime,ForceMode2D.Impulse);
+            return true;
+        }
+        return false;
+    }
 
     void  stateRotation()
     {
@@ -92,9 +101,9 @@ public class MechanicGame3 : MonoBehaviour
         else isIncrease = false;
     }
 
-    void pushUp()
-    {
-        rigidbody2D.velocity = new Vector2(0f,0f);
-        rigidbody2D.AddForce(Vector2.up * force * Time.fixedDeltaTime,ForceMode2D.Impulse);
-    }
+    //void pushUp()
+    //{
+    //    rigidbody2D.velocity = new Vector2(0f,0f);
+    //    rigidbody2D.AddForce(Vector2.up * force * Time.fixedDeltaTime,ForceMode2D.Impulse);
+    //}
 }

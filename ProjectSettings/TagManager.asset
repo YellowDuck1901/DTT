@@ -11,12 +11,18 @@ TagManager:
   - Down
   - Enemy
   - Bullet
+  - trap
+  - Ground
+  - fruit
+  - Bee
+  - boom
   - land
+  - Rock
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
   - 
@@ -46,9 +52,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: -1
+  - name: background
     uniqueID: 2771277635
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Map
+    uniqueID: 1674000397
     locked: 0

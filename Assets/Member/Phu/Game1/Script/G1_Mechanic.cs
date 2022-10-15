@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using System.Reflection;
+using TMPro;
 
 public class G1_Mechanic : MonoBehaviour
 {
@@ -12,10 +13,33 @@ public class G1_Mechanic : MonoBehaviour
     string stringWord = "";
     string stringWordPlayer = "";
     bool enableInputPlayer = false;
+
+    [SerializeField]
+    int[] wordInLevel = new int[] { 1,1,2,2,4};
+    int currentLevel = 0;
+
+    [SerializeField]
+    Dialogue dialogueEnemy;
+
+    [SerializeField]
+    Dialogue dialogueCharacter;
+
+    [SerializeField]
+    TextMeshProUGUI statusGame;
+    
+    [SerializeField]
+    AudioClip left;
+    [SerializeField]
+    AudioClip right;
+
+    [SerializeField]
+    Animator animatorCharacter;
+    [SerializeField]
+    Animator animatorEnemy;
     void Start()
     {
+        nextLevel();
 
-        nextLevel(1);
     }
 
     // Update is called once per frame
@@ -24,13 +48,15 @@ public class G1_Mechanic : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && enableInputPlayer)
         {
             stringWordPlayer += " left";
-            Debug.Log("User LEFT");
+            dialogueCharacter.addTextDialogue("Left");
+            dialogueCharacter.displayDialouge();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && enableInputPlayer)
         {
             stringWordPlayer += " right";
-            Debug.Log("User right");
+            dialogueCharacter.addTextDialogue("Right");
+            dialogueCharacter.displayDialouge();
         }
 
     }
@@ -40,12 +66,18 @@ public class G1_Mechanic : MonoBehaviour
         if (stringWordPlayer == stringWord && enableInputPlayer)
         {
             stringWordPlayer = "";
-            ClearConsole();
-            Debug.Log("Finish");
             enableInputPlayer = false;
-            Debug.Log("Endable : " + enableInputPlayer);
-            nextLevel(1);
+            statusGame.SetText("CORRECT");
+            animatorEnemy.SetTrigger("Hit");
+
+            nextLevel();
         }
+        else if(!stringWord.Contains(stringWordPlayer))
+        {
+            statusGame.SetText("FAILLL");
+            animatorEnemy.SetTrigger("Hit");
+        }
+
     }
     void createStringWord(int numberWord)
     {
@@ -58,6 +90,7 @@ public class G1_Mechanic : MonoBehaviour
             }
             else if (wordType == 2) stringWord += " right";
         }
+
     }
 
     IEnumerator readStringWord(float countDown)
@@ -65,20 +98,33 @@ public class G1_Mechanic : MonoBehaviour
         string[] arrayWord = stringWord.Trim().Split(' ');
         foreach (string word in arrayWord)
         {
-            
             yield return new WaitForSeconds(countDown);
+            statusGame.SetText("Watting");
+            dialogueEnemy.addTextDialogue(word);
+            dialogueEnemy.displayDialouge();
         }
-        Debug.Log(stringWord);
+        statusGame.SetText("START");
         enableInputPlayer = true;
-        Debug.Log("Endable : " + enableInputPlayer);
 
     }
 
-    void nextLevel(int increaseNumber)
+    void nextLevel()
     {
-        numberWord += increaseNumber;
-        createStringWord(numberWord);
-        StartCoroutine(readStringWord(0.5f));
+   
+        if(currentLevel < wordInLevel.Length-1)
+        {
+            numberWord = wordInLevel[currentLevel];
+            Debug.Log("numberword"+numberWord);
+            Debug.Log("current lvelve"+currentLevel);
+
+            createStringWord(numberWord);
+            StartCoroutine(readStringWord(2f));
+            currentLevel++;
+        }
+        else
+        {
+            statusGame.SetText("Win");
+        }
     }
 
     public static void ClearConsole()
@@ -87,6 +133,12 @@ public class G1_Mechanic : MonoBehaviour
         var type = assembly.GetType("UnityEditor.LogEntries");
         var method = type.GetMethod("Clear");
         method.Invoke(new object(), null);
+    }
+
+    IEnumerator waitforSecond(float second)
+    {
+        while(true)
+        yield return new WaitForSeconds(second);
     }
 
 }
