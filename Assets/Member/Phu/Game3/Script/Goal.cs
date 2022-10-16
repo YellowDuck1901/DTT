@@ -10,12 +10,11 @@ public class Goal : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            Debug.Log("Player wwin");
+            G3_Sound.PlaySound(soundsGame.winG3);
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemy wwin");
-
+            G3_Sound.PlaySound(soundsGame.loseG3);
         }
     }
 }

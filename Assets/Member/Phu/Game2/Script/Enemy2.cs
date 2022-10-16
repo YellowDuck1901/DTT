@@ -28,6 +28,7 @@ public class Enemy2 : MonoBehaviour
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
         dir = target.transform.position - transform.position;
+        G3_Sound.PlaySound(soundsGame.apperGhoot);
     }
 
     // Update is called once per frame
@@ -47,7 +48,7 @@ public class Enemy2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("colisition");
+            G3_Sound.PlaySound(soundsGame.loseG2);
             Destroy(gameObject);
         }
 
@@ -79,27 +80,7 @@ public class Enemy2 : MonoBehaviour
 
     void kill()
     {
+        G3_Sound.PlaySound(soundsGame.deadEnemy);
         Destroy(this.gameObject);
     }
-    //AnimationClip findAnimationClip(string clipName, Animator anim) {
-    //    AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
-    //    foreach (AnimationClip clip in clips)
-    //    {
-    //       if(clip.name == clipName)
-    //        {
-    //            return clip;
-    //        }
-    //    }
-
-    //    return null;
-    //}
-
-    //private IEnumerator WaitForAnimation(Animation animation)
-    //{
-    //    do
-    //    {
-    //        yield return null;
-    //    } while (animation.isPlaying);
-    //}
-
 }
