@@ -23,6 +23,9 @@ public class Enemy1 : MonoBehaviour
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
         dir = target.transform.position - transform.position;
+        if (gameObject.name == "Slime") G3_Sound.PlaySound(soundsGame.apperSlime);
+        else if (gameObject.name == "Bat") G3_Sound.PlaySound(soundsGame.apperBat);
+
     }
 
     // Update is called once per frame
@@ -41,7 +44,7 @@ public class Enemy1 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("colisition");
+            G3_Sound.PlaySound(soundsGame.loseG2);
             Destroy(gameObject);
         }
 
@@ -59,7 +62,9 @@ public class Enemy1 : MonoBehaviour
         if (heart == 0)
         {
             Destroy(this.gameObject);
-        }else rig.bodyType = RigidbodyType2D.Dynamic;
+            G3_Sound.PlaySound(soundsGame.deadEnemy);
+        }
+        else rig.bodyType = RigidbodyType2D.Dynamic;
     }
 
     
