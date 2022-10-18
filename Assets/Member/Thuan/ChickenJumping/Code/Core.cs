@@ -1,3 +1,4 @@
+using Assets.Member.Thuan.Public;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,7 @@ public class Core : MonoBehaviour
     {
         if (_actionState != ActionState.Jumping)
         {
+            SoundManager.instance.Play("Jumb");
             isChickenOnLand = false;
             animator.SetBool("Jump", true);
             rb_Chicken.AddForce(Vector2.up * powerJuping, ForceMode2D.Impulse);
@@ -76,6 +78,7 @@ public class Core : MonoBehaviour
             rb_Chicken.position += Vector2.right * speed * Time.deltaTime;
             if (isChickenOnLand)
             {
+                SoundManager.instance.Play("Landing");
                 animator.SetBool("Jump", false);
                 return true;
             }
@@ -91,7 +94,12 @@ public class Core : MonoBehaviour
         {
             isChickenOnLand = true;
         }
-        Debug.Log($"Add {collision.gameObject.tag}");
+        
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            SoundManager.instance.Play("Fail");
+            Debug.Log("Game Over");
+        }
     }
 
     bool Run()

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Member/Tuyen/CasualGameBGM05.meta
 guid: 881edc553ffeb7640b8f7fbf92790e0f
+========
+guid: 2bafc9bc7bada6f47ad4b37582c8f600
+>>>>>>>> Thuan:Assets/Member/Thuan/ChickenJumping/Sound.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

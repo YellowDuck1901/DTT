@@ -1326,8 +1326,8 @@ GameObject:
   - component: {fileID: 1015006002}
   - component: {fileID: 1015006005}
   m_Layer: 0
-  m_Name: Circle
-  m_TagString: Untagged
+  m_Name: Rock
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1546,6 +1546,8 @@ GameObject:
   - component: {fileID: 1439441722}
   - component: {fileID: 1439441721}
   - component: {fileID: 1439441720}
+  - component: {fileID: 1439441724}
+  - component: {fileID: 1439441723}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1588,7 +1590,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.450848
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1619,3 +1621,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439441723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439441719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ce2996d641be547904b1ae551c39f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BackGround Music
+    clip: {fileID: 8300000, guid: d51316a184e8dc942a1cba1f68a57fc9, type: 3}
+    volume: 1
+    pitch: 1
+    isloop: 1
+    source: {fileID: 0}
+  - name: Fail
+    clip: {fileID: 8300000, guid: 9f06d85e97ed0654ab1da705e04c82da, type: 3}
+    volume: 1
+    pitch: 1
+    isloop: 0
+    source: {fileID: 0}
+  - name: Jumb
+    clip: {fileID: 8300000, guid: e86a7c23bfd4f554aafd9c08d5c667d5, type: 3}
+    volume: 1
+    pitch: 1
+    isloop: 0
+    source: {fileID: 0}
+  - name: Landing
+    clip: {fileID: 8300000, guid: f5b99e0845520ab4fb332b6ee1682807, type: 3}
+    volume: 1
+    pitch: 1
+    isloop: 0
+    source: {fileID: 0}
+--- !u!114 &1439441724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439441719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e10e2d7642e3646b6de6124aa88c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
