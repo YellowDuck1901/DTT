@@ -1,26 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hit : MonoBehaviour
 {
-    Animator animator;
     // Start is called before the first frame update
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    [SerializeField]
+    private string NextGame;
+
+    void nextGame()
     {
-        animator.SetTrigger("hit");
-
-    }
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        SceneManager.LoadScene(NextGame);
     }
 }
     

@@ -20,7 +20,7 @@ public class RandomFruit : MonoBehaviour
         {
             var wanted = Random.Range(minTras, maxTras);
             var position = new Vector3(wanted, transform.position.y);
-            GameObject gameObject = Instantiate(fruitPrefab[Random.Range(0, fruitPrefab.Length)], position, Quaternion.identity);
+            GameObject gameObject = Instantiate(fruitPrefab[Random.Range(0, fruitPrefab.Length-1)], position, Quaternion.identity);
             yield return new WaitForSeconds(secondSpawn);
             Destroy(gameObject, 5f);
         }

@@ -7,7 +7,7 @@ public class OMDBee : MonoBehaviour
     public GameObject bee;
     private void OnMouseDown()
     {
-        Debug.Log("giet duoc con ong");
+        Manager_SFX.PlaySound_SFX(soundsGame.collisionBullet);
         Destroy(bee);
     }
 }

@@ -11,8 +11,13 @@ public class EnemyMove : MonoBehaviour
     private CamScript camScript;
     [SerializeField] private AudioSource playerAttackSound;
 
+    [SerializeField] private AudioSource BG;
+
     [SerializeField]
     Animator animKing;
+
+    [SerializeField]
+    LoadWinLose wl;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +32,10 @@ public class EnemyMove : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
+        {
+            toggle = !toggle;
+            camScript.isMoving = toggle;
+        }else if(Input.GetMouseButtonUp(0))
         {
             toggle = !toggle;
             camScript.isMoving = toggle;
@@ -65,9 +74,19 @@ public class EnemyMove : MonoBehaviour
     {
         animKing.SetBool("dealth", true);
     }
- 
 
+    void loadCanvasWin()
+    {
+        BG.Stop();
+        LoadWinLose.loadWin(wl);
+    }
 
+    void loadCanvasLose()
+    {
+        BG.Stop();
+        LoadWinLose.loadLose(wl);
+
+    }
 
 
 }

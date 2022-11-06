@@ -14,6 +14,8 @@ TagManager:
   - trap
   - Ground
   - Object
+  - land
+  - Rock
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - UI 2
   - 
   - 
   - 
@@ -48,15 +50,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background2
+    uniqueID: 2429466277
+    locked: 0
   - name: background
     uniqueID: 2771277635
-    locked: 0
-  - name: Object
-    uniqueID: 1747290599
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Map
     uniqueID: 1674000397
+    locked: 0
+  - name: 
+    uniqueID: 2721076653
+    locked: 0
+  - name: Object
+    uniqueID: 1747290599
     locked: 0

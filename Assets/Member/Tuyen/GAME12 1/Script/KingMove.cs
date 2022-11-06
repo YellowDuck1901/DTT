@@ -9,9 +9,17 @@ public class KingMove : MonoBehaviour
     public double time;
     public float stop;
     private Animator anim;
+    [SerializeField]
+    private Animator CharacterAnim;
+
     private CamScript camScript;
     [SerializeField] private AudioSource kingDeathSound;
     [SerializeField] private AudioSource kingWinningSound;
+    [SerializeField] private AudioSource BG;
+    [SerializeField] private AudioSource BGL;
+
+
+    [SerializeField] LoadWinLose wl; 
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -37,7 +45,8 @@ public class KingMove : MonoBehaviour
             gameObject.transform.localScale = new Vector3(-1, 1, 1); //flip player
             if (camScript.isMoving)
             {
-                Debug.Log("GAME OVER");
+                BGL.Play();
+                CharacterAnim.SetTrigger("Die");
             }
 
             if (remainTime >= (randomTime + stop)) //code l
@@ -66,17 +75,23 @@ public class KingMove : MonoBehaviour
     {
         kingDeathSound.Play();
         Destroy(gameObject,0.5f);
-        Debug.Log("SOUND DEATH PLAY !!");
+        BG.Stop();
+        LoadWinLose.loadWin(wl);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Goal")
         {
-            kingWinningSound.Play();    
-            Debug.Log("Win");
+            BG.Stop();
+            BGL.Play();
+            LoadWinLose.loadLose(wl);
+
             Destroy(gameObject, 0.5f);
+
         }
     }
+
+
 
 }

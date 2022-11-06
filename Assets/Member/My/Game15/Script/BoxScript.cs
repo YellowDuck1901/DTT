@@ -15,7 +15,7 @@ public class BoxScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -25,7 +25,6 @@ public class BoxScript : MonoBehaviour
         {
             time = rate * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, b, speed * Time.deltaTime); ;
-            Debug.Log(transform.position);
             //rate = 1 / duration;
             //time = rate * Time.deltaTime;
             //transform.position = Vector3.Lerp(a, b, time);
@@ -40,7 +39,6 @@ public class BoxScript : MonoBehaviour
         {
             time = rate * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, b, speed*Time.deltaTime); ;
-            Debug.Log(transform.position);
             yield return 0;
         }
     }  
@@ -57,6 +55,7 @@ public class BoxScript : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log("OnMouseDown");
         active = false;
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
     }

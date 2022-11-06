@@ -1,5 +1,6 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SnailScript : MonoBehaviour
@@ -11,6 +12,11 @@ public class SnailScript : MonoBehaviour
     public SpriteRenderer snail;
     private Animator anim;
 
+    [SerializeField]
+    LoadWinLose wl;
+
+    [SerializeField]
+    TextMeshProUGUI text;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +41,18 @@ public class SnailScript : MonoBehaviour
             snail.flipX = transform.position.x > 2.77;
         }
 
+        if (text.text.Equals("00")) { 
+            Manager_SFX.PlaySound_SFX(soundsGame.winG3);
+            LoadWinLose.loadWin(wl);
+
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bee")
         {
+            Manager_SFX.PlaySound_SFX(soundsGame.loseG3); 
             anim.SetTrigger("Die");
         }
     }
@@ -48,6 +60,8 @@ public class SnailScript : MonoBehaviour
     public void SnailDie()
     {
         Destroy(this.gameObject);
+        LoadWinLose.loadLose(wl);
     }
+
 }
 

@@ -64,12 +64,12 @@ public class RandomBee : MonoBehaviour
         if (typeSpawner.Equals(TypeOfSpawner.Circle))
         {
             positionPointInCircle = CoordinatePointInCircle2D(anglePoint, radius, centerPoint);
-            positionPointInCircle.z = 0;
+            positionPointInCircle.z = 10;
         }
         else
         {
             positionPointInCamera = RandomCoordinatePointInCamera(offsetWidth);
-            positionPointInCamera.z = 0;
+            positionPointInCamera.z = 10;
         }
     }
 

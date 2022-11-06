@@ -10,6 +10,8 @@ namespace Assets.Member.Thuan.Public
     {
         public Sound[] sounds;
         public static SoundManager instance;
+
+        
         private void Awake()
         {
             if (instance == null)
@@ -45,6 +47,20 @@ namespace Assets.Member.Thuan.Public
                 return;
             }
             s.source.Play();
+        }
+
+
+        public void Stop(string name)
+        {
+            Debug.Log("Stop");
+            Sound s = Array.Find(sounds, sound => sound.name == name);
+            if (s == null)
+            {
+                Debug.LogWarning("Sound: " + name + " not found!");
+                return;
+            }
+            Debug.Log(s.source.clip.name);
+            s.source.Stop();
         }
     }
 }

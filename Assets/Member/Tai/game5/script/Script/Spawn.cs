@@ -18,7 +18,7 @@ public class Spawn : MonoBehaviour
         {
             GameObject tmp = Instantiate(pipe, new Vector3(transform.position.x, transform.position.y + Random.Range(-height, height), 0), Quaternion.identity);
             timer = 0;
-            Destroy(tmp, 10f);
+            Destroy(tmp, 30f);
         }
         timer += Time.deltaTime;
     }

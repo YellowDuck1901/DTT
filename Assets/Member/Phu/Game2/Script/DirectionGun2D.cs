@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.FilePathAttribute;
+using UnityEngine.SceneManagement;
+using System;
 
 public class DirectionGun2D : MonoBehaviour
 {
     // Start is called before the first frame update
     public static Vector3 directionGun;
+
+    private Animator animator;
     void Start()
     {
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -44,5 +49,19 @@ public class DirectionGun2D : MonoBehaviour
         //{
         //    transform.LookAt
         //}
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            Console.WriteLine("Die");
+            animator.SetTrigger("Die");
+        }
+    }
+
+    void die()
+    {
+        SceneManager.LoadScene("Game3");
     }
 }

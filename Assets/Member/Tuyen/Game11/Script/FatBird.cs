@@ -12,7 +12,11 @@ public class FatBird : MonoBehaviour
     private bool falling;
     [SerializeField] private AudioSource winSound;
     [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource BG;
+
     Renderer m_Renderer;
+
+    [SerializeField] private LoadWinLose wl;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +64,6 @@ public class FatBird : MonoBehaviour
             deathSound.Play();
             rb.velocity = Vector2.zero;
             anim.SetBool("death", true);
-            anim.SetBool("fell", true);
             falling = false;
             Debug.Log("GAME OVER");
         }
@@ -80,6 +83,19 @@ public class FatBird : MonoBehaviour
             rb.velocity = Vector2.zero;
             Debug.Log("Game Over");
         }
+    }
+
+    void loadCanvasWan()
+    {
+        BG.Stop();
+        LoadWinLose.loadWin(wl);
+    }
+
+    void loadCanvasLose()
+    {
+        BG.Stop();
+        LoadWinLose.loadLose(wl);
+
     }
 
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy1 : MonoBehaviour
 {
@@ -23,8 +24,8 @@ public class Enemy1 : MonoBehaviour
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
         dir = target.transform.position - transform.position;
-        if (gameObject.name == "Slime") G3_Sound.PlaySound(soundsGame.apperSlime);
-        else if (gameObject.name == "Bat") G3_Sound.PlaySound(soundsGame.apperBat);
+        if (gameObject.name == "Slime") Manager_SFX.PlaySound_SFX(soundsGame.apperSlime);
+        else if (gameObject.name == "Bat") Manager_SFX.PlaySound_SFX(soundsGame.apperBat);
 
     }
 
@@ -44,7 +45,6 @@ public class Enemy1 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            G3_Sound.PlaySound(soundsGame.loseG2);
             Destroy(gameObject);
         }
 
@@ -62,7 +62,8 @@ public class Enemy1 : MonoBehaviour
         if (heart == 0)
         {
             Destroy(this.gameObject);
-            G3_Sound.PlaySound(soundsGame.deadEnemy);
+            Manager_SFX.PlaySound_SFX(soundsGame.deadEnemy);
+     
         }
         else rig.bodyType = RigidbodyType2D.Dynamic;
     }

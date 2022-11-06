@@ -12,7 +12,7 @@ public class ParentPush : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        G3_Sound.PlaySound(soundsGame.backgroundG3);
+        Manager_SBG.PlaySound(soundsGame.backgroundG3);
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class ParentPush : MonoBehaviour
         if (MechanicGame3.pushCharacter(rigidbody2D))
         {
             animator.SetTrigger("Fly");
-            G3_Sound.PlaySound(soundsGame.fly);
+            Manager_SFX.PlaySound_SFX(soundsGame.fly);
         }
     }
 
@@ -38,7 +38,7 @@ public class ParentPush : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        G3_Sound.PlaySound(soundsGame.ground);
+        Manager_SFX.PlaySound_SFX(soundsGame.ground);
     }
 
     private void OnCollisionExit2D(Collision2D collision)

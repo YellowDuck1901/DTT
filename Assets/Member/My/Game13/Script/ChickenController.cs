@@ -14,7 +14,7 @@ public class ChickenController : MonoBehaviour
 
     private Animator anim;
     //lam cho quay dau
-    public SpriteRenderer chicken;
+    private SpriteRenderer chicken;
     void Start()
     {
         mousePos = transform.position;

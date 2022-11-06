@@ -7,6 +7,18 @@ public class FlappyBird : MonoBehaviour
     Animator animator;
     Rigidbody2D rg;
     public float speed;
+
+    [SerializeField]
+    LoadWinLose wl;
+
+    [SerializeField]
+    CounterTime counterTime;
+
+
+    [SerializeField]
+    AudioSource BG, collect, win, lose;
+
+    bool isTriggerlose;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -16,21 +28,36 @@ public class FlappyBird : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         animator.SetTrigger("hit");
-
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0)) // ??m s? l?n b?m chu?t vào màn hình
         {
-            rg.AddForce(Vector2.up * speed); // hàm bay lên
+            rg.velocity = new Vector3(0f, 0f, 0f);
+            rg.AddForce(Vector2.up * speed * Time.fixedDeltaTime,ForceMode2D.Impulse); // hàm bay lên
+        }
+
+        if (!counterTime.getStatusCounter() && !isTriggerlose) 
+        {
+            isTriggerlose = true;
+            win.Play();
+            PlayerWin();
         }
     }
-    void GameOver()
+
+    void PlayerWin()
     {
-        Debug.Log("aaaaa");
-        Time.timeScale = 0; // dung lai
+        BG.Stop();
+
+        LoadWinLose.loadWin(wl);
 
     }
 
+    void PlayerLose()
+    {
+        BG.Stop();
+        lose.Play();
+        LoadWinLose.loadLose(wl);
 
+    }
 }

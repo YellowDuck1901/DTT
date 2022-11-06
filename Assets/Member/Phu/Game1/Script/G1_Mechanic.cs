@@ -15,8 +15,12 @@ public class G1_Mechanic : MonoBehaviour
     bool enableInputPlayer = false;
 
     [SerializeField]
-    int[] wordInLevel = new int[] { 1,1,2,2,4};
+    int[] wordInLevel = new int[] { 1,1,2,2,4,6};
     int currentLevel = 0;
+
+    //for enemy
+    [SerializeField]
+    float TimeBettwenSpeakWord;
 
     [SerializeField]
     Dialogue dialogueEnemy;
@@ -28,18 +32,20 @@ public class G1_Mechanic : MonoBehaviour
     TextMeshProUGUI statusGame;
     
     [SerializeField]
-    AudioClip left;
-    [SerializeField]
-    AudioClip right;
-
-    [SerializeField]
     Animator animatorCharacter;
     [SerializeField]
     Animator animatorEnemy;
+    [SerializeField]
+    LoadWinLose wl;
+
+    [SerializeField]
+    Canvas canvasDialog;
+
+    bool enableSoundLose;
     void Start()
     {
+        Manager_SBG.PlaySound(soundsGame.backgroundG1/*,1f,1f,128*/);
         nextLevel();
-
     }
 
     // Update is called once per frame
@@ -50,6 +56,7 @@ public class G1_Mechanic : MonoBehaviour
             stringWordPlayer += " left";
             dialogueCharacter.addTextDialogue("Left");
             dialogueCharacter.displayDialouge();
+            Manager_SFX.PlaySound_SFX(soundsGame.speakLeftCharacter,1f,129);
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && enableInputPlayer)
@@ -57,6 +64,9 @@ public class G1_Mechanic : MonoBehaviour
             stringWordPlayer += " right";
             dialogueCharacter.addTextDialogue("Right");
             dialogueCharacter.displayDialouge();
+
+            Manager_SFX.PlaySound_SFX(soundsGame.speakRightCharacter, 1f, 129);
+
         }
 
     }
@@ -72,10 +82,12 @@ public class G1_Mechanic : MonoBehaviour
 
             nextLevel();
         }
-        else if(!stringWord.Contains(stringWordPlayer))
+        else if(!stringWord.Contains(stringWordPlayer)&& !enableSoundLose)
         {
-            statusGame.SetText("FAILLL");
-            animatorEnemy.SetTrigger("Hit");
+            statusGame.SetText("Lose");
+            Manager_SFX.PlaySound_SFX(soundsGame.loseG2);
+            enableSoundLose = true;
+            animatorCharacter.SetTrigger("Hit");
         }
 
     }
@@ -96,12 +108,16 @@ public class G1_Mechanic : MonoBehaviour
     IEnumerator readStringWord(float countDown)
     {
         string[] arrayWord = stringWord.Trim().Split(' ');
+
         foreach (string word in arrayWord)
         {
             yield return new WaitForSeconds(countDown);
             statusGame.SetText("Watting");
             dialogueEnemy.addTextDialogue(word);
             dialogueEnemy.displayDialouge();
+
+            if (word.Trim().Equals("right")) Manager_SFX.PlaySound_SFX(soundsGame.speakRightEnemy);
+            else Manager_SFX.PlaySound_SFX(soundsGame.speakLeftEnemy);
         }
         statusGame.SetText("START");
         enableInputPlayer = true;
@@ -114,16 +130,22 @@ public class G1_Mechanic : MonoBehaviour
         if(currentLevel < wordInLevel.Length-1)
         {
             numberWord = wordInLevel[currentLevel];
-            Debug.Log("numberword"+numberWord);
-            Debug.Log("current lvelve"+currentLevel);
-
             createStringWord(numberWord);
-            StartCoroutine(readStringWord(2f));
+
+            dialogueEnemy.addTextDialogue("");
+            dialogueEnemy.displayDialouge();
+
+            StartCoroutine(readStringWord(TimeBettwenSpeakWord));
+            TimeBettwenSpeakWord = TimeBettwenSpeakWord * 0.6f;
             currentLevel++;
+
+           
         }
         else
         {
             statusGame.SetText("Win");
+            Manager_SFX.PlaySound_SFX(soundsGame.winG1);
+            PlayerWin();
         }
     }
 
@@ -139,6 +161,23 @@ public class G1_Mechanic : MonoBehaviour
     {
         while(true)
         yield return new WaitForSeconds(second);
+    }
+
+    void PlayerWin()
+    {
+        Manager_SBG.stopPlay();
+        canvasDialog.gameObject.SetActive(false);
+        LoadWinLose.loadWin(wl);
+        Destroy(gameObject);
+
+    }
+
+    void PlayerLose()
+    {
+        Manager_SBG.stopPlay();
+        canvasDialog.gameObject.SetActive(false);
+        LoadWinLose.loadLose(wl);
+        Destroy(gameObject);
     }
 
 }

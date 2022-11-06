@@ -39,13 +39,14 @@ public class BeeScript : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             //Destroy(collision.gameObject);
-            Debug.Log("da dung con oc");
         }
     }
 
     public void BeeHit()
     {
+
         anim.SetTrigger("Hit");
     }
+
 
 }

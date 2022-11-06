@@ -7,6 +7,8 @@ public class banana : MonoBehaviour
     // Start is called before the first frame update
     private Animator anim;
    [SerializeField] private AudioSource collectedSound;
+
+    [SerializeField] LoadWinLose wl;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -26,6 +28,9 @@ public class banana : MonoBehaviour
             collectedSound.Play();
             anim.SetBool("collected", true);
             Destroy(gameObject, 0.5f);
+            LoadWinLose.loadWin(wl);
         }
     }
+
+
 }

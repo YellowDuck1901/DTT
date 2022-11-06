@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerScript : MonoBehaviour
@@ -10,8 +11,14 @@ public class PlayerScript : MonoBehaviour
     /*an tat ca cac object button*/
     private Animator anim;
     [SerializeField] private AudioSource touchAudio;
+    [SerializeField] private AudioSource win;
+    [SerializeField] private AudioSource lose;
+    [SerializeField] private AudioSource BG;
+
     private float yPosition;
     Renderer m_Renderer;
+
+    [SerializeField] LoadWinLose wl;
     public void HiddenObj()
     {
         anim.SetBool("running", true);
@@ -55,9 +62,23 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.tag != "Goal")
         {
-
             isTouched = true;
             touchAudio.Play();
+        }
+        else if (collision.gameObject.tag == "Goal") {
+            BG.Stop();
+            LoadWinLose.loadWin(wl);
+
+        }
+
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+
+            //SceneManager.LoadScene("Game11");
+            lose.Play();
+            BG.Stop();
+            LoadWinLose.loadLose(wl);
         }
     }
 
@@ -77,13 +98,16 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        if (m_Renderer.isVisible)
-        {
-            Debug.Log("Object is visible");
-        }
-        else Debug.Log("GAME OVER");
-    }
+    //private void FixedUpdate()
+    //{
+    //    if (m_Renderer.isVisible)
+    //    {
+    //        Debug.Log("Object is visible");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("GAME OVER");
+    //    } 
+    //}
 
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy2 : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Enemy2 : MonoBehaviour
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
         dir = target.transform.position - transform.position;
-        G3_Sound.PlaySound(soundsGame.apperGhoot);
+        Manager_SFX.PlaySound_SFX(soundsGame.apperGhoot);
     }
 
     // Update is called once per frame
@@ -48,7 +49,6 @@ public class Enemy2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            G3_Sound.PlaySound(soundsGame.loseG2);
             Destroy(gameObject);
         }
 
@@ -80,7 +80,7 @@ public class Enemy2 : MonoBehaviour
 
     void kill()
     {
-        G3_Sound.PlaySound(soundsGame.deadEnemy);
+        Manager_SFX.PlaySound_SFX(soundsGame.deadEnemy);
         Destroy(this.gameObject);
     }
 }

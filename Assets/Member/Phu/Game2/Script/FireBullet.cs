@@ -17,7 +17,7 @@ public class FireBullet : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(shotBullet());
+        //StartCoroutine(shotBullet());
     }
 
     // Update is called once per frame
@@ -31,12 +31,20 @@ public class FireBullet : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(secondSpawn);
-            G3_Sound.PlaySound(soundsGame.fire);
+            Manager_SFX.PlaySound_SFX(soundsGame.fire);
             GameObject gameObject = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
             var rig = gameObject.GetComponent<Rigidbody2D>();
             rig.velocity = new Vector3(DirectionGun2D.directionGun.x * speed,DirectionGun2D.directionGun.y * speed) * Time.fixedDeltaTime;
         }
     }
 
+
+    void shotBulletEachAnimation()
+    {
+        Manager_SFX.PlaySound_SFX(soundsGame.fire);
+        GameObject gameObject = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
+        var rig = gameObject.GetComponent<Rigidbody2D>();
+        rig.velocity = new Vector3(DirectionGun2D.directionGun.x * speed, DirectionGun2D.directionGun.y * speed) * Time.fixedDeltaTime;
+    }
 
 }

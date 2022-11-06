@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        G3_Sound.PlaySound(soundsGame.backgroundG2);
+        Manager_SFX.PlaySound_SFX(soundsGame.backgroundG2);
         radius = getWidthCamera() / 2 + offsetWidth;
         area = Mathf.PI * radius * radius;
 
