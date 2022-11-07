@@ -3291,6 +3291,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1983656782213869216, guid: 8d776e752ed105d428617d47fba5adb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4194353343888117148, guid: 8d776e752ed105d428617d47fba5adb3, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3393,6 +3397,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4726210064561064958, guid: 8d776e752ed105d428617d47fba5adb3, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623503752544974497, guid: 8d776e752ed105d428617d47fba5adb3, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12631,7 +12639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1be9e0cd3867e44867152e81166def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordInLevel: 01000000
+  wordInLevel: 010000000100000002000000020000000400000004000000
   TimeBettwenSpeakWord: 2
   dialogueEnemy: {fileID: 849127638}
   dialogueCharacter: {fileID: 962786394}

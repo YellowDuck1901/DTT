@@ -5408,6 +5408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 403770559}
+  - component: {fileID: 403770560}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -5439,6 +5440,18 @@ RectTransform:
   m_AnchoredPosition: {x: -1.3848877, y: -2.718872}
   m_SizeDelta: {x: 758, y: 400.4}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &403770560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403770558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58cfc9dc9f79e3469c9a84f694d66c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &408852559
 GameObject:
   m_ObjectHideFlags: 0
@@ -6171,7 +6184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game15.1
   ColdDownTime: 0
 --- !u!114 &603447580
 MonoBehaviour:
@@ -6219,7 +6232,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 603447579}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6357,7 +6370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game6
   ColdDownTime: 0
 --- !u!114 &646611179
 MonoBehaviour:
@@ -6405,7 +6418,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 646611178}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6717,7 +6730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game13
   ColdDownTime: 0
 --- !u!114 &681041763
 MonoBehaviour:
@@ -6765,7 +6778,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 681041762}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7937,7 +7950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game10
   ColdDownTime: 0
 --- !u!114 &901396365
 MonoBehaviour:
@@ -7985,7 +7998,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 901396364}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8179,6 +8192,7 @@ GameObject:
   - component: {fileID: 956733631}
   - component: {fileID: 956733630}
   - component: {fileID: 956733629}
+  - component: {fileID: 956733632}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -8245,6 +8259,18 @@ RectTransform:
   m_AnchoredPosition: {x: 1.385498, y: 2.7193604}
   m_SizeDelta: {x: -3.1999512, y: 1.3774414}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &956733632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956733628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58cfc9dc9f79e3469c9a84f694d66c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &992680735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8335,7 +8361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game1
   ColdDownTime: 0
 --- !u!114 &1018363892
 MonoBehaviour:
@@ -8381,9 +8407,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1970525867}
+      - m_Target: {fileID: 1018363891}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9341,7 +9367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game7
   ColdDownTime: 0
 --- !u!114 &1360348271
 MonoBehaviour:
@@ -9389,7 +9415,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1360348270}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9490,7 +9516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game5
   ColdDownTime: 0
 --- !u!114 &1375315416
 MonoBehaviour:
@@ -9538,7 +9564,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1375315415}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10712,7 +10738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Menu
   ColdDownTime: 0
 --- !u!114 &1536558962
 MonoBehaviour:
@@ -10760,7 +10786,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1536558961}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10769,30 +10795,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 956733628}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2140752669}
-        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: actionRemuse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1536558963
 MonoBehaviour:
@@ -11020,7 +11022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game14
   ColdDownTime: 0
 --- !u!114 &1560626872
 MonoBehaviour:
@@ -11068,7 +11070,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1560626871}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11674,7 +11676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game8
   ColdDownTime: 0
 --- !u!114 &1633104999
 MonoBehaviour:
@@ -11722,7 +11724,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633104998}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12421,7 +12423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game4
   ColdDownTime: 0
 --- !u!114 &1847014031
 MonoBehaviour:
@@ -12469,7 +12471,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1847014030}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12988,7 +12990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game2
   ColdDownTime: 0
 --- !u!114 &1970525868
 MonoBehaviour:
@@ -13036,7 +13038,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1970525867}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13338,7 +13340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game9
   ColdDownTime: 0
 --- !u!114 &1987367967
 MonoBehaviour:
@@ -13386,7 +13388,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1987367966}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13582,7 +13584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game11
   ColdDownTime: 0
 --- !u!114 &2093967812
 MonoBehaviour:
@@ -13630,7 +13632,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2093967811}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13731,7 +13733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game3
   ColdDownTime: 0
 --- !u!114 &2112958723
 MonoBehaviour:
@@ -13779,7 +13781,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2112958722}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14017,7 +14019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aecf7bcc613dff4bb61c1055a04e0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSence: 
+  NextSence: Game12
   ColdDownTime: 0
 --- !u!114 &2116795871
 MonoBehaviour:
@@ -14065,7 +14067,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2116795870}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: openScene
+        m_MethodName: openSceneWithColdDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14159,6 +14161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pause: {fileID: 956733628}
+  pauseR: {fileID: 403770558}
   listHiden: []
 --- !u!114 &2140752670
 MonoBehaviour:
@@ -14380,7 +14383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4547560346210221182, guid: adca2674c50c3334fa2b4ecd99326f59, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: openSceneWithoutColdDown
+      value: openSceneWithColdDown
       objectReference: {fileID: 0}
     - target: {fileID: 4547560346210221182, guid: adca2674c50c3334fa2b4ecd99326f59, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

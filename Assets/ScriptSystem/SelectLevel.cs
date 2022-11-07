@@ -36,7 +36,9 @@ public class SelectLevel : MonoBehaviour
 
     public static void openSceneWithoutColdDown()
     {
-            SceneManager.LoadScene(staticSence);
+            SceneManager.LoadScene("Game1");
+            LoadWinLose.isLoadCanvasLose = false;
+            LoadWinLose.isLoadCanvasWin = false;
 
     }
 }

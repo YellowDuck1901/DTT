@@ -5,9 +5,19 @@ using UnityEngine;
 public class DDOnScene : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private static DDOnScene pause;
+    void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-    }
+        DontDestroyOnLoad(this);
 
+        if (pause == null)
+        {
+            pause = this;
+        }
+        else
+        {
+            DestroyObject(gameObject);
+        }
+    }
 }
+

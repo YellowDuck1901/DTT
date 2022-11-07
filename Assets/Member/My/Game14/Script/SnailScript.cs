@@ -83,6 +83,7 @@ public class SnailScript : MonoBehaviour
             Manager_SBG.stopPlay();
             Manager_SFX.PlaySound_SFX(soundsGame.winG3);
             LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
         }
     }
 
@@ -94,6 +95,7 @@ public class SnailScript : MonoBehaviour
             finish = true;
             Manager_SBG.stopPlay();
             LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
         }
     }
 

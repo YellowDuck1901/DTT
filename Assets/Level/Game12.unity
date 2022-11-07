@@ -4251,6 +4251,10 @@ PrefabInstance:
       propertyPath: m_VideoClip
       value: 
       objectReference: {fileID: 32900000, guid: 4aea82ddb02249a458b3dce4e45fe236, type: 3}
+    - target: {fileID: 4528970480851852876, guid: d3f41e279717c9f40ab885a2744b6f37, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4528970481049996025, guid: d3f41e279717c9f40ab885a2744b6f37, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -119

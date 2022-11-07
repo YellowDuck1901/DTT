@@ -10,28 +10,26 @@ public class Pause : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject pause;
+    [SerializeField] GameObject pauseR;
 
     [SerializeField]
     List<GameObject> listHiden;
     
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !LoadWinLose.isLoadCanvasLose && !LoadWinLose.isLoadCanvasWin)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (pause.active)
             {
+                pauseR.SetActive(false);
                 pause.SetActive(false);
                 actionRemuse();
                 listHiden.ForEach(c => { c.active = true; });
 
             }
             else {
+                pauseR.SetActive(true);
                 pause.SetActive(true);
                 actionPause();
                 listHiden.ForEach(c => { c.active = false; });

@@ -21,7 +21,7 @@ namespace Assets.Member.Thuan.Public
                 Destroy(gameObject);
                 return;
             }
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             foreach (Sound s in sounds)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
