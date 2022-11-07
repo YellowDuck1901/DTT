@@ -19,5 +19,6 @@ public class DDOnScene : MonoBehaviour
             DestroyObject(gameObject);
         }
     }
+
 }
 
