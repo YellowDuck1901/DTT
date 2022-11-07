@@ -21,13 +21,17 @@ public class mouse : MonoBehaviour
     [SerializeField]
     AudioSource BG, collect, win, lose;
 
-    bool isTriggerLose;
+    [SerializeField]
+    SelectLevel sl;
+
+    bool isTriggerLose, isTriggerWin, finish;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision != null)
+        if (collision != null && !isTriggerLose)
         {
             collect.Play();
             animator.SetTrigger("hit");
+            isTriggerLose = true; 
         }
     }
 
@@ -65,26 +69,34 @@ public class mouse : MonoBehaviour
             transform.position = new Vector3(X, Y, Z);
         }
 
-        if (!counterTime.getStatusCounter() && !isTriggerLose) {
+        if (!counterTime.getStatusCounter() && !isTriggerWin) {
             PlayerWin();
-            isTriggerLose = true;
+            isTriggerWin = true;
         }
        
     }
 
     void PlayerWin()
     {
-        win.Play();
-        BG.Stop();
-        LoadWinLose.loadWin(wl);
-
+        if (!finish)
+        {
+            finish = true;
+            win.Play();
+            BG.Stop();
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     void PlayerLose()
     {
-        lose.Play();
-        BG.Stop();
-        LoadWinLose.loadLose(wl);
-
+        if (!finish)
+        {
+            finish = true;
+            lose.Play();
+            BG.Stop();
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 }

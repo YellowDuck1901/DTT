@@ -17,11 +17,15 @@ public class Dialogue : MonoBehaviour
         
     void Start()
     {
+       
+    }
+
+    private void Awake()
+    {
         _text = GetComponent<TMP_Text>();
         _group = GetComponent<CanvasGroup>();
         _group.alpha = 0;
     }
-
     // Update is called once per frame
     void Update()
     {

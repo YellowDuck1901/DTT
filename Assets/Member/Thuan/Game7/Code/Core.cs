@@ -29,6 +29,11 @@ public class Core : MonoBehaviour
 
     [SerializeField]
     LoadWinLose lw;
+
+    [SerializeField]
+    SelectLevel sl;
+
+    bool finish, isTriggerWin, isTriggerLose;
     // Start is called before the first frame update
     void Start()
     {
@@ -97,11 +102,10 @@ public class Core : MonoBehaviour
             isChickenOnLand = true;
         }
         
-        if (collision.gameObject.CompareTag("Rock"))
+        if (collision.gameObject.CompareTag("Rock") && !isTriggerLose)
         {
-
+            isTriggerLose = true;
             SoundManager.instance.Play("Fail");
-
             animator.SetTrigger("Die");
         }
     }
@@ -116,8 +120,9 @@ public class Core : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Goal")
+        if(collision.tag == "Goal" && !isTriggerWin)
         {
+            isTriggerWin = true;
             SoundManager.instance.Play("Win");
             loadCanvasWin();
         }
@@ -126,14 +131,24 @@ public class Core : MonoBehaviour
 
     public void loadCanvasWin()
     {
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadWin(lw);
+        if (!finish)
+        {
+            finish = true;
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadWin(lw);
+            sl.openSceneWithColdDown();
+        }
     }
 
     public void loadCanvasLose()
     {
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadLose(lw);
+        if (!finish)
+        {
+            finish = true;
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadLose(lw);
+            sl.openSceneWithColdDown();
+        }
     }
 
 

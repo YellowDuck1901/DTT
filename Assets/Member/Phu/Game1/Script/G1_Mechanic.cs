@@ -41,11 +41,29 @@ public class G1_Mechanic : MonoBehaviour
     [SerializeField]
     Canvas canvasDialog;
 
+
+    [SerializeField]
+    SelectLevel sl;
+
+    bool finish;
+
     bool enableSoundLose;
     void Start()
     {
+        Debug.Log("Start");
+
         Manager_SBG.PlaySound(soundsGame.backgroundG1/*,1f,1f,128*/);
         nextLevel();
+    }
+
+    private void Awake()
+    {
+        Debug.Log("awake");
+    }
+    private void OnEnable()
+    {
+        Debug.Log("OnEnable");
+
     }
 
     // Update is called once per frame
@@ -126,7 +144,7 @@ public class G1_Mechanic : MonoBehaviour
 
     void nextLevel()
     {
-   
+        Debug.Log("nextLevel");
         if(currentLevel < wordInLevel.Length-1)
         {
             numberWord = wordInLevel[currentLevel];
@@ -165,19 +183,29 @@ public class G1_Mechanic : MonoBehaviour
 
     void PlayerWin()
     {
-        Manager_SBG.stopPlay();
-        canvasDialog.gameObject.SetActive(false);
-        LoadWinLose.loadWin(wl);
-        Destroy(gameObject);
+        if(!finish)
+        {
+            finish = true;
+            Manager_SBG.stopPlay();
+            canvasDialog.gameObject.SetActive(false);
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+            //gameObject.SetActive(false);
+        }
 
     }
 
     void PlayerLose()
     {
-        Manager_SBG.stopPlay();
-        canvasDialog.gameObject.SetActive(false);
-        LoadWinLose.loadLose(wl);
-        Destroy(gameObject);
+        if(!finish)
+        {
+            finish = true;
+            Manager_SBG.stopPlay();
+            canvasDialog.gameObject.SetActive(false);
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+            //gameObject.SetActive(false);
+        }
     }
 
 }

@@ -9,6 +9,10 @@ public class PlayerBull : MonoBehaviour
 {
     [SerializeField]
     LoadWinLose wl;
+
+    [SerializeField]
+    SelectLevel sl;
+
     Rigidbody2D m_Rigidbody;
     [Range(1.1f, 10f)]
     public float powerSup;
@@ -17,6 +21,9 @@ public class PlayerBull : MonoBehaviour
     private bool isPower = false, enableHit = true,isDead = false;
     float offset = 1.5f;
     private Animator _animator;
+    bool isTriggerWin, isTriggerLose, finish;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,18 +75,27 @@ public class PlayerBull : MonoBehaviour
 
     void PlayerWin()
     {
-        SoundManager.instance.Play("Win");
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadWin(wl);
+        if (!finish)
+        {
+            finish = true;
+            SoundManager.instance.Play("Win");
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     void PlayerLose()
     {
-        SoundManager.instance.Play("Lose");
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadLose(wl);
+        if (!finish)
+        {
+            finish = true;
+            SoundManager.instance.Play("Lose");
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
-
     void dead()
     {
         isDead = true;

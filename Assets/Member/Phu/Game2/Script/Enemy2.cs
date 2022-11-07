@@ -49,7 +49,7 @@ public class Enemy2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Bullet")

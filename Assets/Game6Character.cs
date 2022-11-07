@@ -15,7 +15,9 @@ public class Game6Character : MonoBehaviour
     [SerializeField]
     AudioSource BG, Break, win, lose;
 
-    bool isTriggerSound;
+    [SerializeField]
+    SelectLevel sl;
+    bool isTriggerWin, isTriggerLose, finish;
     private void Start()
     {
         animator = GetComponent<Animator>();    
@@ -23,16 +25,17 @@ public class Game6Character : MonoBehaviour
 
     private void Update()
     {
-        if (!CounterTime.getStatusCounter() && !isTriggerSound)
+        if (!CounterTime.getStatusCounter() && !isTriggerWin)
         {
-            isTriggerSound = true;
+            isTriggerWin = true;
             PlayerWin();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !isTriggerLose)
         {
+            isTriggerLose = true;
             animator.SetTrigger("Die");
             Break.Play();
         }
@@ -40,15 +43,25 @@ public class Game6Character : MonoBehaviour
 
     void PlayerLose()
     {
-        lose.Play();
-        BG.Stop();
-        LoadWinLose.loadLose(wl);
+        if (!finish)
+        {
+            finish = true;
+            lose.Play();
+            BG.Stop();
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     void PlayerWin()
     {
-        win.Play();
-        BG.Stop();
-        LoadWinLose.loadWin(wl);
+        if (!finish)
+        {
+            finish = true;
+            win.Play();
+            BG.Stop();
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 }

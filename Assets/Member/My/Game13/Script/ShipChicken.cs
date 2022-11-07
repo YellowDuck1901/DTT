@@ -14,6 +14,10 @@ public class ShipChicken : MonoBehaviour
     [SerializeField]
     LoadWinLose lw;
 
+    [SerializeField]
+    SelectLevel sl;
+
+    bool isTriggerWin, isTriggerLose, finish;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -23,16 +27,15 @@ public class ShipChicken : MonoBehaviour
     {
         if (collect.isCollected())
         {
-            Manager_SFX.PlaySound_SFX(soundsGame.winG2); ;
-            LoadWinLose.loadWin(lw);
-
+            loadCanvasWin();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("da cham");
-        if (collision.tag == "boom")
+        if (collision.tag == "boom" && !isTriggerLose)
         {
+            isTriggerLose = true;
             //Debug.Log("chet");
             anim.SetTrigger("Die");
             Manager_SFX.PlaySound_SFX(soundsGame.loseG2); ;
@@ -52,7 +55,29 @@ public class ShipChicken : MonoBehaviour
 
     void checkDie()
     {
-        LoadWinLose.loadLose(lw);
+        loadCanvasLose();
+    }
 
+
+    void loadCanvasWin()
+    {
+        if (!finish)
+        {
+            Manager_SBG.stopPlay();
+            Manager_SFX.PlaySound_SFX(soundsGame.winG2);
+            LoadWinLose.loadWin(lw);
+            sl.openSceneWithColdDown();
+        }
+    }
+
+
+    void loadCanvasLose()
+    {
+        if (!finish)
+        {
+            Manager_SBG.stopPlay();
+            LoadWinLose.loadLose(lw);
+            sl.openSceneWithColdDown();
+        }
     }
 }

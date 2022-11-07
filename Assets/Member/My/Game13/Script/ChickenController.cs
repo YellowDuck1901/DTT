@@ -17,6 +17,8 @@ public class ChickenController : MonoBehaviour
     private SpriteRenderer chicken;
     void Start()
     {
+
+        Manager_SBG.PlaySound(soundsGame.backgroundG2);
         mousePos = transform.position;
         anim = GetComponent<Animator>();
 

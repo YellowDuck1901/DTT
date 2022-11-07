@@ -18,6 +18,11 @@ public class EnemyMove : MonoBehaviour
 
     [SerializeField]
     LoadWinLose wl;
+
+    [SerializeField]
+    SelectLevel sl;
+
+    bool isTriggerWin, isTriggerLose, finish;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,16 +82,25 @@ public class EnemyMove : MonoBehaviour
 
     void loadCanvasWin()
     {
-        BG.Stop();
-        LoadWinLose.loadWin(wl);
+        if (!finish)
+        {
+            finish = true;
+            BG.Stop();
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
+
 
     void loadCanvasLose()
     {
-        BG.Stop();
-        LoadWinLose.loadLose(wl);
-
+        if (!finish)
+        {
+            finish = true;
+            BG.Stop();
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
-
 
 }

@@ -18,28 +18,41 @@ public class FlappyBird : MonoBehaviour
     [SerializeField]
     AudioSource BG, collect, win, lose;
 
-    bool isTriggerlose;
+    [SerializeField]
+    SelectLevel sl;
+    bool isTriggerlose, isTriggerWin, finish;
     private void Start()
     {
         animator = GetComponent<Animator>();
         rg = GetComponent<Rigidbody2D>();
+        Time.timeScale = 0;
+        rg.bodyType = RigidbodyType2D.Kinematic;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        animator.SetTrigger("hit");
+        if (!isTriggerlose)
+        {
+            isTriggerlose = true;
+            animator.SetTrigger("hit");
+        }
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0)) // ??m s? l?n b?m chu?t vào màn hình
         {
+            if(Time.timeScale == 0)
+            {
+                rg.bodyType = RigidbodyType2D.Dynamic;
+                Time.timeScale = 1;
+            }
             rg.velocity = new Vector3(0f, 0f, 0f);
             rg.AddForce(Vector2.up * speed * Time.fixedDeltaTime,ForceMode2D.Impulse); // hàm bay lên
         }
 
-        if (!counterTime.getStatusCounter() && !isTriggerlose) 
+        if (!counterTime.getStatusCounter() && !isTriggerWin) 
         {
-            isTriggerlose = true;
+            isTriggerWin = true;
             win.Play();
             PlayerWin();
         }
@@ -47,17 +60,25 @@ public class FlappyBird : MonoBehaviour
 
     void PlayerWin()
     {
-        BG.Stop();
+        if (!finish)
+        {
+            finish = true;
+            BG.Stop();
 
-        LoadWinLose.loadWin(wl);
-
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     void PlayerLose()
     {
-        BG.Stop();
-        lose.Play();
-        LoadWinLose.loadLose(wl);
-
+        if (!finish)
+        {
+            finish = true;
+            BG.Stop();
+            lose.Play();
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 }

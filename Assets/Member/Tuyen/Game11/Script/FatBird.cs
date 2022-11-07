@@ -13,11 +13,13 @@ public class FatBird : MonoBehaviour
     [SerializeField] private AudioSource winSound;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource BG;
+    [SerializeField] private SelectLevel sl;
 
     Renderer m_Renderer;
 
     [SerializeField] private LoadWinLose wl;
 
+    bool isTriggerWin, isTriggerLose, finish;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,24 +61,27 @@ public class FatBird : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Ground" && !isTriggerLose)
         {
+            isTriggerLose = true;
             deathSound.Play();
             rb.velocity = Vector2.zero;
             anim.SetBool("death", true);
             falling = false;
             Debug.Log("GAME OVER");
         }
-        if(collision.gameObject.tag == "Goal")
+        if(collision.gameObject.tag == "Goal" && !isTriggerWin)
         {
+            isTriggerWin = true;
             winSound.Play();
             falling = false;
             rb.velocity = Vector2.zero;
             anim.SetBool("fell", true);
             Debug.Log("Win");
         }
-        if(collision.gameObject.tag == "trap")
+        if(collision.gameObject.tag == "trap" && !isTriggerLose)
         {
+            isTriggerLose = true;
             deathSound.Play();
             falling = false;
             anim.SetBool("death", true);
@@ -87,17 +92,25 @@ public class FatBird : MonoBehaviour
 
     void loadCanvasWan()
     {
-        BG.Stop();
-        LoadWinLose.loadWin(wl);
+        if (!finish)
+        {
+            finish = true;
+
+            BG.Stop();
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     void loadCanvasLose()
     {
-        BG.Stop();
-        LoadWinLose.loadLose(wl);
+        if (!finish)
+        {
+            finish = true;
 
+            BG.Stop();
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }    
     }
-
-
-
 }

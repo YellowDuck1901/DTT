@@ -30,6 +30,10 @@ public class Box : MonoBehaviour
     [SerializeField]
     CinemachineVirtualCamera cam;
 
+    [SerializeField]
+    SelectLevel sl;
+
+    bool isTriggerWin, isTriggerLose, finish;
     void Start()
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
@@ -62,8 +66,9 @@ public class Box : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Ground" && !isTriggerLose)
         {
+            isTriggerLose = true;
             animator.SetTrigger("Die");
             Manager_SFX.PlaySound_SFX(soundsGame.collisionBullet);
         }
@@ -110,17 +115,26 @@ public class Box : MonoBehaviour
     }
     void loadCanvasWin()
     {
-        Manager_SFX.PlaySound_SFX(soundsGame.winG1);
+        if (!finish)
+        {
+            finish = true;
 
-        LoadWinLose.loadWin(wl);
+            Manager_SFX.PlaySound_SFX(soundsGame.winG1);
+            Manager_SBG.stopPlay();
+            LoadWinLose.loadWin(wl);
+        }
     }
 
     void loadCanvasLose()
     {
-        Manager_SFX.PlaySound_SFX(soundsGame.loseG1);
+        if (!finish)
+        {
+            finish = true;
 
-        LoadWinLose.loadLose(wl);
-
+            Manager_SFX.PlaySound_SFX(soundsGame.loseG1);
+            Manager_SBG.stopPlay();
+            LoadWinLose.loadLose(wl);
+        }
     }
 
 }

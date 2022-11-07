@@ -18,11 +18,23 @@ public class SnailScript : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI text;
 
+    [SerializeField]
+    SelectLevel sl;
+
+    bool isTriggerWin, isTriggerLose, finish;
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    //{
+    //    snail = GetComponent<SpriteRenderer>();
+    //    anim = GetComponent<Animator>();
+    //    Manager_SBG.PlaySound(soundsGame.backgroundG2);
+    //}
+
+    private void Awake()
     {
         snail = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        Manager_SBG.PlaySound(soundsGame.backgroundG2);
     }
 
     // Update is called once per frame
@@ -41,17 +53,17 @@ public class SnailScript : MonoBehaviour
             snail.flipX = transform.position.x > 2.77;
         }
 
-        if (text.text.Equals("00")) { 
-            Manager_SFX.PlaySound_SFX(soundsGame.winG3);
-            LoadWinLose.loadWin(wl);
+        if (text.text.Equals("00")) {
 
+            loadCanvasWin();
         }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bee")
+        if (collision.gameObject.tag == "Bee" && !isTriggerLose)
         {
+            isTriggerLose = true;
             Manager_SFX.PlaySound_SFX(soundsGame.loseG3); 
             anim.SetTrigger("Die");
         }
@@ -59,8 +71,30 @@ public class SnailScript : MonoBehaviour
 
     public void SnailDie()
     {
-        Destroy(this.gameObject);
-        LoadWinLose.loadLose(wl);
+        loadCanvasLose();
+    }
+
+
+    void loadCanvasWin()
+    {
+        if (!finish)
+        {
+            finish = true;
+            Manager_SBG.stopPlay();
+            Manager_SFX.PlaySound_SFX(soundsGame.winG3);
+            LoadWinLose.loadWin(wl);
+        }
+    }
+
+
+    void loadCanvasLose()
+    {
+        if (!finish)
+        {
+            finish = true;
+            Manager_SBG.stopPlay();
+            LoadWinLose.loadLose(wl);
+        }
     }
 
 }

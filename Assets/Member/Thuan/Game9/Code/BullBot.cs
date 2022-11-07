@@ -12,8 +12,12 @@ public class BullBot : MonoBehaviour
 
     [SerializeField]
     LoadWinLose wl;
+
+    [SerializeField]
+    SelectLevel sl;
     private float ford() => Random.Range(7f, 12f);
 
+    bool finish;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +56,27 @@ public class BullBot : MonoBehaviour
 
     void PlayerWin()
     {
-        SoundManager.instance.Play("Win");
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadWin(wl);
+        if (!finish)
+        {
+            finish = true;
+
+            SoundManager.instance.Play("Win");
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     void PlayerLose()
     {
-        SoundManager.instance.Play("Lose");
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadLose(wl);
+        if (!finish)
+        {
+            finish = true;
+
+            SoundManager.instance.Play("Lose");
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 }

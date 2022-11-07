@@ -21,6 +21,13 @@ public class FireBulletV2 : MonoBehaviour
 
     [SerializeField]
     CounterTime counterTime;
+
+    [SerializeField]
+    SelectLevel sl;
+
+    private bool isTriggerAnim;
+
+    bool finish;
     void Start()
     {
         Manager_SBG.PlaySound(soundsGame.backgroundG2);
@@ -49,27 +56,35 @@ public class FireBulletV2 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Enemy" && !isTriggerAnim)
         {
 
-            anim.SetTrigger("Die");
+            anim.SetTrigger("DDIE");
 
-            //Destroy(gameObject);
-            //SceneManager.LoadScene("Game3");
+            isTriggerAnim = true;
         }
     }
 
     public void loadCanvasWin()
     {
-        Manager_SBG.stopPlay();
-        LoadWinLose.loadWin(wl);
+        if (!finish)
+        {
+            finish = true;
+            Manager_SBG.stopPlay();
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     public void loadCanvasLose()
     {
-        Manager_SFX.PlaySound_SFX(soundsGame.loseG1);
-        Manager_SBG.stopPlay();
-        LoadWinLose.loadLose(wl);
-
+        if (!finish)
+        {
+            finish = true;
+            Manager_SFX.PlaySound_SFX(soundsGame.loseG1);
+            Manager_SBG.stopPlay();
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 }

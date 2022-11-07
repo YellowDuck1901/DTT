@@ -1,3 +1,4 @@
+using Assets.Member.Thuan.Public;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,8 +18,11 @@ public class PlayerScript : MonoBehaviour
 
     private float yPosition;
     Renderer m_Renderer;
-
+    bool finish;
     [SerializeField] LoadWinLose wl;
+
+    [SerializeField] SelectLevel sl;
+
     public void HiddenObj()
     {
         anim.SetBool("running", true);
@@ -66,19 +70,13 @@ public class PlayerScript : MonoBehaviour
             touchAudio.Play();
         }
         else if (collision.gameObject.tag == "Goal") {
-            BG.Stop();
-            LoadWinLose.loadWin(wl);
-
+            PlayerWin();
         }
 
 
         if (collision.gameObject.tag == "Enemy")
         {
-
-            //SceneManager.LoadScene("Game11");
-            lose.Play();
-            BG.Stop();
-            LoadWinLose.loadLose(wl);
+            PlayerLose();
         }
     }
 
@@ -92,22 +90,27 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void PlayerWin()
     {
-
+        if (!finish)
+        {
+            finish = true;
+            BG.Stop();
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if (m_Renderer.isVisible)
-    //    {
-    //        Debug.Log("Object is visible");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("GAME OVER");
-    //    } 
-    //}
+    void PlayerLose()
+    {
+        if (!finish)
+        {
+            finish = true;
 
+            lose.Play();
+            BG.Stop();
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
+    }
 }

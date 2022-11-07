@@ -30,6 +30,12 @@ public class GameCore : MonoBehaviour
     CounterTime couterTime;
 
     private bool triggerSoundLose;
+
+    [SerializeField]
+    SelectLevel sl;
+
+    bool finish, isTriggerWin, isTriggerLose;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -230,17 +236,25 @@ public class GameCore : MonoBehaviour
 
     void PlayerWin()
     {
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadWin(wl);
-
+        if (!finish)
+        {
+            finish = true;
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadWin(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 
     void PlayerLose()
     {
-        SoundManager.instance.Play("Lose");
+        if (!finish)
+        {
+            finish = true;
+            SoundManager.instance.Play("Lose");
 
-        SoundManager.instance.Stop("BackGround Music");
-        LoadWinLose.loadLose(wl);
-
+            SoundManager.instance.Stop("BackGround Music");
+            LoadWinLose.loadLose(wl);
+            sl.openSceneWithColdDown();
+        }
     }
 }

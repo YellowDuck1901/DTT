@@ -9,11 +9,12 @@ public class LoadWinLose : MonoBehaviour
     [SerializeField]
     GameObject win,lose;
     public static bool isLoadCanvasWin, isLoadCanvasLose;
+
      void isVisibleWin(bool b)
     {
-        if (!lose.active) //load when un visible
+        if (!win.active) //load when un visible
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             win.SetActive(b);
         }
         else //unload
@@ -27,7 +28,7 @@ public class LoadWinLose : MonoBehaviour
     {
         if (!lose.active) //load when un visible
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             lose.SetActive(b);
         }
         else //unload
@@ -39,6 +40,7 @@ public class LoadWinLose : MonoBehaviour
 
     public static void loadWin(LoadWinLose wl)
     {
+        
         isLoadCanvasWin = true;
         wl.isVisibleWin(true);
     }
@@ -59,4 +61,6 @@ public class LoadWinLose : MonoBehaviour
         isLoadCanvasLose = false;
         wl.isVisibleLose(false);
     }
+
+   
 }

@@ -7,14 +7,36 @@ public class SelectLevel : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private string GameLevel;
-    void Start()
+     private string NextSence;
+
+    [SerializeField]
+    private float ColdDownTime;
+
+    static private string staticSence;
+
+    private void Start()
     {
-        
+        staticSence = NextSence;
+    }
+    public IEnumerator WithColdDown()
+    {
+        while (true)
+        {
+            Debug.Log("slectLevel");
+            yield return new WaitForSeconds(ColdDownTime);
+            SceneManager.LoadScene(NextSence);
+            break;
+        }
     }
 
-    public void openScene()
+    public void openSceneWithColdDown()
     {
-        SceneManager.LoadScene(GameLevel);
+        StartCoroutine(WithColdDown());
+    }
+
+    public static void openSceneWithoutColdDown()
+    {
+            SceneManager.LoadScene(staticSence);
+
     }
 }

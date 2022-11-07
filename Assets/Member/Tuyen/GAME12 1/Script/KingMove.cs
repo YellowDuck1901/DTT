@@ -19,7 +19,8 @@ public class KingMove : MonoBehaviour
     [SerializeField] private AudioSource BGL;
 
 
-    [SerializeField] LoadWinLose wl; 
+    [SerializeField] LoadWinLose wl;
+    bool isTriggerWin, isTriggerLose, finish;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -43,8 +44,9 @@ public class KingMove : MonoBehaviour
         {
             anim.SetBool("running", false);
             gameObject.transform.localScale = new Vector3(-1, 1, 1); //flip player
-            if (camScript.isMoving)
+            if (camScript.isMoving && !isTriggerLose)
             {
+                isTriggerLose = true;
                 BGL.Play();
                 CharacterAnim.SetTrigger("Die");
             }
